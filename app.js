@@ -37,6 +37,10 @@ function MainController($scope) {
         desserts: ['ice cream', 'waffles']
     }
     $scope.data = data;
+    const majorOptions = {
+        majors: ['Computer Science', 'Computer Engineering'] 
+    }
+    $scope.majors = majorOptions.majors;
 }
 MainController.$inject = ['$scope']
 angular.module('app').controller('MainController', MainController)

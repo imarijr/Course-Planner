@@ -1,2 +1,16 @@
 <div>{{ data.american[0] }}</div>
 <a href="#/second">Page 2</a>
+
+
+  <md-input-container class="md-block" flex-gt-sm>
+    <label>My Major</label>
+    <md-select ng-model="majorOptions.majors">
+      <md-option ng-repeat="major in majors" value="{{major}}">
+        {{major}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-button md-no-ink class="md-primary" href="#/second">Go</md-button>
+
+
