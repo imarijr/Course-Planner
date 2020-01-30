@@ -1,2 +1,23 @@
-<div> {{ data.american[1] }} </div>
+<div> {{ data.american[1] }}
+    <md-list flex ng-app="app" ng-controller="second">
+        <md-subheader class="md-no-sticky">Subheader</md-subheader>
+        <div layout="row" flex="100">
+            <p flex="50">Name</p>
+            <p flex="50">EmailId</p>
+        </div>
+
+        <md-list-item class="md-3-line" ng-repeat="detail in classes" ng-click="null">
+            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+            <div class="md-list-item-text" layout="column">
+              <h3>{{ detail.name}}</h3>
+              <h4>{{ detail.taken }}</h4>
+              
+            </div>
+            <md-divider ></md-divider>
+          </md-list-item>
+          
+         
+          
+</md-list>
+</div>
 <a href="#/main">Page 1</a>

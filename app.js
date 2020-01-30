@@ -28,6 +28,12 @@ angular.module('app').controller('second', ['$scope', function ($scope) {
         desserts: ['ice cream', 'waffles']
     }
     $scope.data = data;
+    $scope.classes = [
+        { name: 'Math', taken: 'Not Taken' },
+        { name: 'Data Structures', taken: 'Taken' },
+        { name: 'Systems Programming', taken: 'Not Taken' },
+        { name: 'Logic Design',  taken: 'Taken' }
+      ];
 }]);
 
 // Explicit dependency injection
@@ -37,6 +43,12 @@ function MainController($scope) {
         desserts: ['ice cream', 'waffles']
     }
     $scope.data = data;
+    $scope.classes = [
+        { name: 'abc', taken: 'abc@gmail.com' },
+        { name: 'xyz', taken: 'xyz@gmail.com' },
+        { name: 'pqr', taken: 'pqr@gmail.com' },
+        { name: 'rs',  taken: 'rs@gmail.com' }
+      ];
 }
 MainController.$inject = ['$scope']
 angular.module('app').controller('MainController', MainController)
