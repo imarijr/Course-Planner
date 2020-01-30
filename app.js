@@ -28,12 +28,29 @@ angular.module('app').controller('second', ['$scope', function ($scope) {
         desserts: ['ice cream', 'waffles']
     }
     $scope.data = data;
-    $scope.classes = [
-        { name: 'Math', taken: 'Not Taken' },
-        { name: 'Data Structures', taken: 'Taken' },
-        { name: 'Systems Programming', taken: 'Not Taken' },
-        { name: 'Logic Design',  taken: 'Taken' }
-      ];
+    $scope.years = [
+        ['1', '2'],
+        ['3', '4'],
+        ['5', '6'],
+        ['7', '8'],
+    ]
+    $scope.classes = [{
+            name: 'Math',
+            taken: 'Not Taken'
+        },
+        {
+            name: 'Data Structures',
+            taken: 'Taken'
+        },
+        {
+            name: 'Systems Programming',
+            taken: 'Not Taken'
+        },
+        {
+            name: 'Logic Design',
+            taken: 'Taken'
+        }
+    ];
 }]);
 
 // Explicit dependency injection
@@ -43,14 +60,25 @@ function MainController($scope) {
         desserts: ['ice cream', 'waffles']
     }
     $scope.data = data;
-    $scope.classes = [
-        { name: 'abc', taken: 'abc@gmail.com' },
-        { name: 'xyz', taken: 'xyz@gmail.com' },
-        { name: 'pqr', taken: 'pqr@gmail.com' },
-        { name: 'rs',  taken: 'rs@gmail.com' }
-      ];
+    $scope.classes = [{
+            name: 'abc',
+            taken: 'abc@gmail.com'
+        },
+        {
+            name: 'xyz',
+            taken: 'xyz@gmail.com'
+        },
+        {
+            name: 'pqr',
+            taken: 'pqr@gmail.com'
+        },
+        {
+            name: 'rs',
+            taken: 'rs@gmail.com'
+        }
+    ];
     const majorOptions = {
-        majors: ['Computer Science', 'Computer Engineering'] 
+        majors: ['Computer Science', 'Computer Engineering']
     }
     $scope.majors = majorOptions.majors;
 }

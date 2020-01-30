@@ -13,3 +13,12 @@
     margin-right: -50%;
     transform: translate(-50%, -50%);
 }
+
+md-list{
+    min-width: 500px !important;
+    padding-left: 30px;
+}
+
+.year-row{
+    min-width: 500px;
+}
