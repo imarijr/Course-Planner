@@ -80,7 +80,31 @@ function MainController($scope) {
     const majorOptions = {
         majors: ['Computer Science', 'Computer Engineering']
     }
-    $scope.majors = majorOptions.majors;
+    //$scope.majors = majorOptions.majors;
+
+    function readTextFile(file, callback) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
+    }
+    
+    //usage:
+    readTextFile("data.json", function(text){
+        var data = JSON.parse(text);
+        console.log(data);
+        let majorsFound = []
+        for (var key in data.major[0]) {
+            majorsFound.push(key)
+        }
+        $scope.majors = majorsFound;
+    });
+
 }
 MainController.$inject = ['$scope']
 angular.module('app').controller('MainController', MainController)

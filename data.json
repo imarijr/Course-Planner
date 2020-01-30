@@ -1,8 +1,8 @@
 {
-	"major" : [
+	"major" : [{
 		"Computer Science" : {
 			"credits": 129, 
-			"courses": [	
+			"courses": [{	
 				"MATH   10550": {
 					"name": "Calculus I",
 					"prereqs": null,
@@ -260,10 +260,10 @@
                 "HIST": {},
                 "SocSci": {}, 
                 "FA_LIT": {}
-            ]
+			}]
 		},
         "Computer Engineering" : {},
         "Biology": {}
-	]
+	}]
 
 }
