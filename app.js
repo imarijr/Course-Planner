@@ -49,6 +49,10 @@ function MainController($scope) {
         { name: 'pqr', taken: 'pqr@gmail.com' },
         { name: 'rs',  taken: 'rs@gmail.com' }
       ];
+    const majorOptions = {
+        majors: ['Computer Science', 'Computer Engineering'] 
+    }
+    $scope.majors = majorOptions.majors;
 }
 MainController.$inject = ['$scope']
 angular.module('app').controller('MainController', MainController)
