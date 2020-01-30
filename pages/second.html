@@ -1,9 +1,9 @@
 <div layout="row" layout-sm="column" layout-align="space-around center" ng-repeat="year in years">
     <div ng-repeat="semester in year" class="year-row">
-        <md-list ng-app="app" ng-controller="second">
+        <md-list flex ng-app="app" ng-controller="second">
             <md-subheader class="md-no-sticky">Semester {{semester}}</md-subheader>
             <div layout="row" flex="" style="padding-bottom: 20px;">
-                <p flex="50">Credits</p>
+                <p flex="50">Total Credits</p>
                 <p flex="50">#</p>
             </div>
 
@@ -17,4 +17,3 @@
         </md-list>
     </div>
 </div>
-<a href="#/main">Page 1</a>

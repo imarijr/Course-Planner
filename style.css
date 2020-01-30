@@ -22,3 +22,7 @@ md-list{
 .year-row{
     min-width: 500px;
 }
+
+md-toolbar{
+    background-color: #C99700 !important;
+}
