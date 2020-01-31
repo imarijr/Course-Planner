@@ -1,9 +1,9 @@
 {
-	"major" : [{
-		"Computer Science" : {
+	"major": [{
+		"Computer Science": {
 			"credits": 129, 
 			"courses": [{	
-				"MATH   10550": {
+				"MATH 10550": {
 					"name": "Calculus I",
 					"prereqs": null,
 					"coreqs": ["MATH 12550"], 
@@ -11,9 +11,9 @@
 					"taken": false, 
 					"semReq": null,
 					"semDefault": 1,
-					"attributes": ["MATH", "egReq"] 
+					"attributes": [] 
 				},
-				"CHEM   10171": {
+				"CHEM 10171": {
 					"name": "Introduction to Chemical Principals",
 					"prereqs": [],
 					"coreqs": ["CHEM 11171"], 
@@ -23,7 +23,7 @@
 					"semDefault": 1, 
 					"attributes": [] 
 				}, 
-				"EG     10111": {
+				"EG 10111": {
 					"name": "Intro to Engineering Systems I",
 					"prereqs": [],
 					"coreqs": [], 
@@ -33,7 +33,7 @@
 					"semDefault": 1,
 					"attributes": [] 
 				}, 
-				"WR     13100": {
+				"WR 13100": {
 					"name": "Writing and Rhetoric",
 					"prereqs": [],
 					"coreqs": [], 
@@ -43,7 +43,7 @@
 					"semDefault": 1,
 					"attributes": [] 
 				}, 
-				"FYS    10101": {
+				"FYS 10101": {
 					"name": "Moreau First Year Experience",
 					"prereqs": [],
 					"coreqs": [], 
@@ -53,7 +53,7 @@
 					"semDefault": 1, 
 					"attributes": [] 
 				},
-				"MATH   10560": {
+				"MATH 10560": {
 					"name": "Calculus II",
 					"prereqs": ["MATH 10550"],
 					"coreqs": ["MATH 12560"], 
@@ -61,9 +61,9 @@
 					"taken": false, 
 					"semReq": null,
 					"semDefault": 2, 
-					"attributes": ["MATH", "egReq"] 
+					"attributes": [] 
 				}, 
-				"EG     10112": {
+				"EG 10112": {
 					"name": "Intro to Engineering Systems II",
 					"prereqs": ["EG 10111"],
 					"coreqs": [], 
@@ -73,7 +73,7 @@
 					"semDefault": 2, 
 					"attributes": [] 
 				}, 
-				"PHYS   10310": {
+				"PHYS 10310": {
 					"name": "Engineering Physics I: Mechanics",
 					"prereqs": [],
 					"coreqs": ["PHYS 11310"], 
@@ -83,7 +83,7 @@
 					"semDefault": 2, 
 					"attributes": [] 
 				}, 
-				"FYS    10102": {
+				"FYS 10102": {
 					"name": "Moreau First Year Experience",
 					"prereqs": [],
 					"coreqs": [], 
@@ -93,7 +93,7 @@
 					"semDefault": 2, 
 					"attributes": [] 
 				}, 
-				"CSE    20311": {
+				"CSE 20311": {
 					"name": "Fundamentals of Computing",
 					"prereqs": [],
 					"coreqs": ["CSE 21311"], 
@@ -103,7 +103,7 @@
 					"semDefault": 3, 
 					"attributes": [] 
 				}, 
-				"CSE    20110": {
+				"CSE 20110": {
 					"name": "Discrete Mathematics",
 					"prereqs": [],
 					"coreqs": [], 
@@ -113,7 +113,7 @@
 					"semDefault": 3, 
 					"attributes": [] 
 				}, 
-				"MATH   20550": {
+				"MATH 20550": {
 					"name": "Calculus III",
 					"prereqs": ["MATH 10560"],
 					"coreqs": ["MATH 22550"], 
@@ -121,9 +121,9 @@
 					"taken": false, 
 					"semReq": null,
 					"semDefault": 3, 
-					"attributes": ["MATH", "egReq"] 
+					"attributes": [] 
 				}, 
-				"PHYS   10320": {
+				"PHYS 10320": {
 					"name": "Engineering Physics II: Electromagnetism",
 					"prereqs": ["PHYS 10310", "MATH 10550"],
 					"coreqs": ["PHYS 11320"], 
@@ -133,7 +133,7 @@
 					"semDefault": 3, 
 					"attributes": [] 
 				}, 				
-				"CSE    20312": {
+				"CSE 20312": {
 					"name": "Data Structures",
 					"prereqs": ["CSE 20311"],
 					"coreqs": ["21312"], 
@@ -143,7 +143,7 @@
 					"semDefault": 4, 
 					"attributes": [] 
 				},   
-				"CSE    20221": {
+				"CSE 20221": {
 					"name": "Logic Design",
 					"prereqs": ["MATH 10560"],
 					"coreqs": ["CSE 21221"], 
@@ -153,7 +153,7 @@
 					"semDefault": 4, 
 					"attributes": [] 
 				}, 
-				"MATH   20580": {
+				"MATH 20580": {
 					"name": "Introduction to Linear Algebra & Differential Equations",
 					"prereqs": ["MATH 20550"],
 					"coreqs": ["MATH 22580"], 
@@ -161,9 +161,9 @@
 					"taken": false, 
 					"semReq": null,
 					"semDefault": 4, 
-					"attributes": ["MATH", "egReq"] 
+					"attributes": [] 
 				}, 
-				"CSE    20289": {
+				"CSE 20289": {
 					"name": "Systems Programming",
 					"prereqs": ["CSE 20311"],
 					"coreqs": [], 
@@ -173,7 +173,7 @@
 					"semDefault": 4, 
 					"attributes": [] 
 				},
-				"CSE    30321": {
+				"CSE 30321": {
 					"name": "Computer Architecture",
 					"prereqs": ["CSE 20221"],
 					"coreqs": ["CSE 31321"], 
@@ -183,7 +183,7 @@
 					"semDefault": 5, 
 					"attributes": [] 
 				}, 			
-				"CSE    30341": {
+				"CSE 30341": {
 					"name": "Operating Systems Principles",
 					"prereqs": ["CSE 20312", "CSE 20289"],
 					"coreqs": [], 
@@ -193,7 +193,7 @@
 					"semDefault": 6, 
 					"attributes": [] 
 				}, 
-				"CSE    30151": {
+				"CSE 30151": {
 					"name": "Theory of Computing",
 					"prereqs": ["CSE 20110", "CSE 20312"],
 					"coreqs": [], 
@@ -203,7 +203,7 @@
 					"semDefault": 6, 
 					"attributes": [] 
 				}, 
-				"CSE    30332": {
+				"CSE 30332": {
 					"name": "Programming Paradigms",
 					"prereqs": ["CSE 20312", "CSE 20289"],
 					"coreqs": [], 
@@ -213,7 +213,7 @@
 					"semDefault": 6, 
 					"attributes": [] 
 				}, 
-				"ACMS   30440": {
+				"ACMS 30440": {
 					"name": "Probability & Statistics",
 					"prereqs": ["MATH 20550"],
 					"coreqs": [], 
@@ -223,7 +223,7 @@
 					"semDefault": 6, 
 					"attributes": [] 
 				}, 
-				"CSE    40113": {
+				"CSE 40113": {
 					"name": "Design/Analysis of Algorithms",
 					"prereqs": ["CSE 20312"],
 					"coreqs": [], 
@@ -233,7 +233,7 @@
 					"semDefault": 7, 
 					"attributes": [] 
 				}, 	
-				"CSE    40175": {
+				"CSE 40175": {
 					"name": "Ethical and Professional Issues",
 					"prereqs": [],
 					"coreqs": [], 
@@ -243,27 +243,170 @@
 					"semDefault": 8, 
 					"attributes": [] 
 				},
-                "PHILO  1": {},
-                "PHILO  2": {},
-                "THEO   1": {},
-                "THEO   2": {},
-                "USEM": {}, 
-                "TECHE  1": {}, 
-                "TECHE  2": {}, 
-                "TECHE  3": {}, 
-                "CSEE   1": {},
-                "CSEE   2": {},
-                "CSEE   3": {},
-                "CSEE   4": {},
-                "CSEE   5": {},
-                "CSEE   6": {},
-                "HIST": {},
-                "SocSci": {}, 
-                "FA_LIT": {}
-			}]
+                "PHILO 1": {
+                    "name": "First Philosophy",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 3, 
+					"attributes": [] 
+                },
+                "PHILO 2": {
+                    "name": "Second Philosophy",
+					"prereqs": ["PHILO 1"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 5, 
+					"attributes": [] 
+                },
+                "THEO 1": {
+                    "name": "First Theology",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 4, 
+					"attributes": []
+                },
+                "THEO 2": {
+                    "name": "Second Theology",
+					"prereqs": ["THEO 1"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 6, 
+					"attributes": []
+                },
+                "USEM": {
+                    "name": "University Seminar",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 2, 
+					"attributes": []
+                }, 
+                "TECHE 1": {
+                    "name": "Technical Elective 1",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 2, 
+					"attributes": []                    
+                }, 
+                "TECHE 2": {
+                    "name": "Technical Elective 2",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 5, 
+					"attributes": [] 
+                }, 
+                "TECHE 3": {
+                    "name": "Technical Elective 3",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 7, 
+					"attributes": [] 
+                }, 
+                "CSEE 1": {
+                    "name": "CSE Elective 1",
+					"prereqs": ["CSE 20312", "CSE 20289"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 5, 
+					"attributes": [] 
+                },
+                "CSEE 2": {
+                    "name": "CSE Elective 2",
+					"prereqs": ["CSE 20312", "CSE 20289"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 5, 
+					"attributes": []
+                },
+                "CSEE 3": {
+                    "name": "CSE Elective 3",
+					"prereqs": ["CSE 20312", "CSE 20289"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 7, 
+					"attributes": []
+                },
+                "CSEE 4": {
+                    "name": "CSE Elective 4",
+					"prereqs": ["CSE 20312", "CSE 20289"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 7, 
+					"attributes": []
+                },
+                "CSEE 5": {
+                    "name": "CSE Elective 5",
+					"prereqs": ["CSE 20312", "CSE 20289"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 8, 
+					"attributes": []
+                },
+                "CSEE 6": {
+                    "name": "CSE Elective 6",
+					"prereqs": ["CSE 20312", "CSE 20289"],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 8, 
+					"attributes": []
+                },
+                "ARTSLETTERS 1": {
+                    "name": "Arts & Letters Elective 1",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 1, 
+					"attributes": []
+                },
+                "ARTSLETTERS 2": {
+                    "name": "Arts & Letters Elective 2",
+					"prereqs": [],
+					"coreqs": [], 
+					"credits": 3,
+					"taken": false, 
+					"semReq": [],
+					"semDefault": 8, 
+					"attributes": []
+                }
+            }]
 		},
         "Computer Engineering" : {},
         "Biology": {}
-	}]
+    }]
 
 }
