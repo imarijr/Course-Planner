@@ -103,7 +103,13 @@ function MainController($scope) {
             majorsFound.push(key)
         }
         $scope.majors = majorsFound;
+        console.log(majorOptions.majors)
     });
+
+    $scope.saveMajor = function() {
+        $scope.majorLocked = $scope.majorChosen;
+        console.log($scope.majorLocked)
+    };
 
 }
 MainController.$inject = ['$scope']
