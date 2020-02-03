@@ -1,0 +1,24 @@
+{
+  "name": "course-planner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imarijr/Course-Planner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imarijr/Course-Planner/issues"
+  },
+  "homepage": "https://github.com/imarijr/Course-Planner#readme",
+  "dependencies": {
+    "angular-drag-and-drop-lists": "^2.1.0",
+    "angular-ui-sortable": "^0.19.0",
+    "jquery": "^3.4.1"
+  }
+}

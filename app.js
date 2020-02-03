@@ -1,4 +1,4 @@
-angular.module('app', ['ngMaterial', 'ngRoute']);
+angular.module('app', ['ngMaterial', 'ngRoute', 'ui.sortable']);
 
 angular.module('app').config(function ($routeProvider, $locationProvider) {
 
@@ -28,29 +28,29 @@ angular.module('app').controller('second', ['$scope', function ($scope) {
         desserts: ['ice cream', 'waffles']
     }
     $scope.data = data;
-    $scope.years = [
-        ['1', '2'],
-        ['3', '4'],
-        ['5', '6'],
-        ['7', '8'],
-    ]
-    $scope.classes = [{
-            name: 'Math',
-            taken: 'Not Taken'
-        },
-        {
-            name: 'Data Structures',
-            taken: 'Taken'
-        },
-        {
-            name: 'Systems Programming',
-            taken: 'Not Taken'
-        },
-        {
-            name: 'Logic Design',
-            taken: 'Taken'
+
+    // Connects semester lists for drap and drop
+    $scope.courseMap = {
+        placeholder: "course",
+        connectWith: ".course-list"
+    };
+
+    // Place holder course data
+    $scope.models = {
+        selected: null,
+        semesters: {
+            "1": ["Calculus I", "Logic", "Physics"],
+            "2": ["Math", "Modern Web Development", "Physics"],
+            "3": ["Physics 2", "Data Structures", "Logic", "Physics"],
+            "4": ["Math", "Logic", "Physics"],
+            "5": ["Math", "Logic", "Physics"],
+            "6": ["Math", "Design", "Physics"],
+            "7": ["Math", "Logic", "Physics"],
+            "8": ["Math", "Logic", "Physics"]
         }
-    ];
+    };
+
+
 }]);
 
 // Explicit dependency injection
@@ -86,16 +86,16 @@ function MainController($scope) {
         var rawFile = new XMLHttpRequest();
         rawFile.overrideMimeType("application/json");
         rawFile.open("GET", file, true);
-        rawFile.onreadystatechange = function() {
+        rawFile.onreadystatechange = function () {
             if (rawFile.readyState === 4 && rawFile.status == "200") {
                 callback(rawFile.responseText);
             }
         }
         rawFile.send(null);
     }
-    
+
     //usage:
-    readTextFile("data.json", function(text){
+    readTextFile("data.json", function (text) {
         var data = JSON.parse(text);
         console.log(data);
         let majorsFound = []
@@ -106,7 +106,7 @@ function MainController($scope) {
         console.log(majorOptions.majors)
     });
 
-    $scope.saveMajor = function() {
+    $scope.saveMajor = function () {
         $scope.majorLocked = $scope.majorChosen;
         console.log($scope.majorLocked)
     };
