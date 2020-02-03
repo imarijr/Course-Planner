@@ -41,7 +41,7 @@ angular.module('app').controller('second', ['$scope', function ($scope) {
         semesters: {
             "1": ["Calculus I", "Logic", "Physics"],
             "2": ["Math", "Modern Web Development", "Physics"],
-            "3": ["Physics 2", "Data Structures", "Logic", "Physics"],
+            "3": ["Physics 2", "Data Structures", "General Chemistry"],
             "4": ["Math", "Logic", "Physics"],
             "5": ["Math", "Logic", "Physics"],
             "6": ["Math", "Design", "Physics"],
