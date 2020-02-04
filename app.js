@@ -70,7 +70,9 @@ angular.module('app').controller('second', ['$scope', '$http', function ($scope,
 }]);
 
 // Explicit dependency injection
-function MainController($scope) {
+function MainController($scope, $http) {
+//angular.module('app').controller('MainController', ['$scope', '$http', function ($scope, $http) {
+
     const data = {
         american: ['pizza', 'burgers', 'hotdogs'],
         desserts: ['ice cream', 'waffles']
@@ -98,29 +100,42 @@ function MainController($scope) {
     }
     //$scope.majors = majorOptions.majors;
 
-    function readTextFile(file, callback) {
-        var rawFile = new XMLHttpRequest();
-        rawFile.overrideMimeType("application/json");
-        rawFile.open("GET", file, true);
-        rawFile.onreadystatechange = function () {
-            if (rawFile.readyState === 4 && rawFile.status == "200") {
-                callback(rawFile.responseText);
-            }
-        }
-        rawFile.send(null);
-    }
+    // function readTextFile(file, callback) {
+    //     var rawFile = new XMLHttpRequest();
+    //     rawFile.overrideMimeType("application/json");
+    //     rawFile.open("GET", file, true);
+    //     rawFile.onreadystatechange = function () {
+    //         if (rawFile.readyState === 4 && rawFile.status == "200") {
+    //             callback(rawFile.responseText);
+    //         }
+    //     }
+    //     rawFile.send(null);
+    // }
 
-    //usage:
-    readTextFile("data.json", function (text) {
-        var data = JSON.parse(text);
-        console.log(data);
+    $http.get('/data.json').then ((JSONdata) => {
+        // all of the json data
+        $scope.classData = JSONdata.data.major;
         let majorsFound = []
-        for (var key in data.major[0]) {
-            majorsFound.push(key)
+        for (var key in $scope.classData) {
+            let jsonstring = JSON.stringify($scope.classData[key])
+            let major = jsonstring.split("\"")
+            majorsFound.push(major[1])
         }
         $scope.majors = majorsFound;
-        console.log(majorOptions.majors)
-    });
+        console.log($scope.majors)
+    })
+
+    // //usage:
+    // readTextFile("data.json", function (text) {
+    //     var data = JSON.parse(text);
+    //     console.log(data);
+    //     let majorsFound = []
+    //     for (var key in data.major[0]) {
+    //         majorsFound.push(key)
+    //     }
+    //     $scope.majors = majorsFound;
+    //     console.log(majorOptions.majors)
+    // });
 
     $scope.saveMajor = function () {
         $scope.majorLocked = $scope.majorChosen;
@@ -128,7 +143,7 @@ function MainController($scope) {
     };
 
 }
-MainController.$inject = ['$scope']
+MainController.$inject = ['$scope', '$http']
 angular.module('app').controller('MainController', MainController)
 
 // Single Responsibility Principle (SRP)
