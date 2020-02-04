@@ -31,6 +31,9 @@ angular.module('app').controller('second', ['$scope', function ($scope) {
 
     // Connects semester lists for drap and drop
     $scope.courseMap = {
+        stop: function(e, ui){
+            console.log("Updated Course Map", JSON.stringify($scope.models.semesters,undefined,2))
+        },
         placeholder: "course",
         connectWith: ".course-list"
     };
