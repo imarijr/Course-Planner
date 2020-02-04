@@ -20,14 +20,44 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 })
 
 // Inline Annotation
-angular.module('app').controller('second', ['$scope', function ($scope) {
+angular.module('app').controller('second', ['$scope', '$http', function ($scope, $http) {
 
     // TODO: MOVE JSON DATA SOURCE TO A SERVICE ()
     const data = {
         american: ['pizza', 'burgers', 'hotdogs'],
         desserts: ['ice cream', 'waffles']
     }
-    $scope.data = data;
+    
+    $scope.models = {
+        selected: null,
+        semesters: {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": []
+        }
+    };
+
+    $http.get('/data.json').then ((JSONdata) => {
+        // all of the json data
+        $scope.classData = JSONdata.data.major;
+        console.log('All Class Data:', $scope.classData)
+        // computer science classes only
+        $scope.computerScience = $scope.classData[0].ComputerScience.courses[0]
+        console.log('Computer Science Courses:', $scope.computerScience)
+        //sort courses by semester
+        angular.forEach($scope.computerScience, function (value, key) { 
+            $scope.models.semesters[value.semDefault].push(value.name); 
+            
+        }); 
+        console.log('Semesters:', $scope.models.semesters)
+        
+    })
+
 
     // Connects semester lists for drap and drop
     $scope.courseMap = {
@@ -37,23 +67,6 @@ angular.module('app').controller('second', ['$scope', function ($scope) {
         placeholder: "course",
         connectWith: ".course-list"
     };
-
-    // Place holder course data
-    $scope.models = {
-        selected: null,
-        semesters: {
-            "1": ["Calculus I", "Logic", "Physics"],
-            "2": ["Math", "Modern Web Development", "Physics"],
-            "3": ["Physics 2", "Data Structures", "General Chemistry"],
-            "4": ["Math", "Logic", "Physics"],
-            "5": ["Math", "Logic", "Physics"],
-            "6": ["Math", "Design", "Physics"],
-            "7": ["Math", "Logic", "Physics"],
-            "8": ["Math", "Logic", "Physics"]
-        }
-    };
-
-
 }]);
 
 // Explicit dependency injection
