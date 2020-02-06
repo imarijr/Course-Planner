@@ -20,14 +20,14 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 })
 
 // Inline Annotation
-angular.module('app').controller('second', ['$scope', '$http', function ($scope, $http) {
+angular.module('app').controller('second', ['$scope', '$http', "ClassService", function ($scope, $http, ClassService) {
 
     // TODO: MOVE JSON DATA SOURCE TO A SERVICE ()
     const data = {
         american: ['pizza', 'burgers', 'hotdogs'],
         desserts: ['ice cream', 'waffles']
     }
-    
+
     $scope.models = {
         selected: null,
         semesters: {
@@ -42,7 +42,7 @@ angular.module('app').controller('second', ['$scope', '$http', function ($scope,
         }
     };
 
-    $http.get('/data.json').then ((JSONdata) => {
+    ClassService.getCourseData().then((JSONdata) => {
         // all of the json data
         $scope.classData = JSONdata.data.major;
         console.log('All Class Data:', $scope.classData)
@@ -50,19 +50,18 @@ angular.module('app').controller('second', ['$scope', '$http', function ($scope,
         $scope.computerScience = $scope.classData[0].ComputerScience.courses[0]
         console.log('Computer Science Courses:', $scope.computerScience)
         //sort courses by semester
-        angular.forEach($scope.computerScience, function (value, key) { 
-            $scope.models.semesters[value.semDefault].push(value.name); 
-            
-        }); 
-        console.log('Semesters:', $scope.models.semesters)
-        
-    })
+        angular.forEach($scope.computerScience, function (value, key) {
+            $scope.models.semesters[value.semDefault].push(value.name);
 
+        });
+        console.log('Semesters:', $scope.models.semesters)
+
+    })
 
     // Connects semester lists for drap and drop
     $scope.courseMap = {
-        stop: function(e, ui){
-            console.log("Updated Course Map", JSON.stringify($scope.models.semesters,undefined,2))
+        stop: function (e, ui) {
+            console.log("Updated Course Map", JSON.stringify($scope.models.semesters, undefined, 2))
         },
         placeholder: "course",
         connectWith: ".course-list"
@@ -71,7 +70,7 @@ angular.module('app').controller('second', ['$scope', '$http', function ($scope,
 
 // Explicit dependency injection
 function MainController($scope, $http) {
-//angular.module('app').controller('MainController', ['$scope', '$http', function ($scope, $http) {
+    //angular.module('app').controller('MainController', ['$scope', '$http', function ($scope, $http) {
 
     const data = {
         american: ['pizza', 'burgers', 'hotdogs'],
@@ -112,18 +111,7 @@ function MainController($scope, $http) {
     //     rawFile.send(null);
     // }
 
-    $http.get('/data.json').then ((JSONdata) => {
-        // all of the json data
-        $scope.classData = JSONdata.data.major;
-        let majorsFound = []
-        for (var key in $scope.classData) {
-            let jsonstring = JSON.stringify($scope.classData[key])
-            let major = jsonstring.split("\"")
-            majorsFound.push(major[1])
-        }
-        $scope.majors = majorsFound;
-        console.log($scope.majors)
-    })
+    
 
     // //usage:
     // readTextFile("data.json", function (text) {
@@ -142,19 +130,18 @@ function MainController($scope, $http) {
         console.log($scope.majorLocked)
     };
 
+
 }
 MainController.$inject = ['$scope', '$http']
 angular.module('app').controller('MainController', MainController)
 
-// Single Responsibility Principle (SRP)
+function ClassService($http) {
 
-// Separation of Concerns (SOC)
-
-// Don't Repeat Yourself (DRY)
-
-// Consistent Naming
-
-// Clean code leads to:
-// Easier onboarding for new team members (or future self)
-// Easier debugging
-// Easier to maintain
+    this.getCourseData = getCourseData
+    function getCourseData() {
+        
+        return $http.get('/data.json')
+    }
+};
+ClassService.$inject = ['$http']
+angular.module('app').service('ClassService', ClassService);
