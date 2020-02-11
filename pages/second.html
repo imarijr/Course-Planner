@@ -10,12 +10,13 @@
                 <md-list ui-sortable="courseMap" class="course-list" ng-model="semester">
                     <md-subheader class="md-no-sticky">Semester {{$index+1}}</md-subheader>
                     <!-- repeats each class in a semester -->
-                    <md-list-item ng-repeat="item in semester" class="md-2-line course">
+                    <md-list-item ng-repeat="item in semester.courses" class="md-2-line course">
                         <div class="md-list-item-text">
                             {{item}}
                         </div>
                         <md-divider></md-divider>
                     </md-list-item>
+                <p>Credit Total: <b>{{ semester.creditTot }} </b></p>
                 </md-list>
             </md-grid-tile>
         </md-grid-list>

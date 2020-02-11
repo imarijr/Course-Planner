@@ -25,14 +25,14 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
     $scope.models = {
         selected: null,
         semesters: {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": []
+            "1": {courses: [], creditPer: [], creditTot: 0},
+            "2": {courses: [], creditPer: [], creditTot: 0},
+            "3": {courses: [], creditPer: [], creditTot: 0},
+            "4": {courses: [], creditPer: [], creditTot: 0},
+            "5": {courses: [], creditPer: [], creditTot: 0},
+            "6": {courses: [], creditPer: [], creditTot: 0},
+            "7": {courses: [], creditPer: [], creditTot: 0},
+            "8": {courses: [], creditPer: [], creditTot: 0}
         }
     };
 
@@ -45,12 +45,13 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
         console.log('Computer Science Courses:', $scope.computerScience)
         //sort courses by semester
         angular.forEach($scope.computerScience, function (value, key) {
-            $scope.models.semesters[value.semDefault].push(value.name);
+            $scope.models.semesters[value.semDefault].courses.push(value.name);
+            $scope.models.semesters[value.semDefault].creditPer.push(value.credits);
 
         });
         console.log('Semesters:', $scope.models.semesters)
-
     })
+
 
     // Connects semester lists for drap and drop
     $scope.courseMap = {
@@ -58,7 +59,17 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
             console.log("Updated Course Map", JSON.stringify($scope.models.semesters, undefined, 2))
         },
         placeholder: "course",
-        connectWith: ".course-list"
+        connectWith: ".course-list",
+        update: function (e, ui) {
+            var idx, cred, sum;
+            for (idx=1; idx<=8; idx++) {
+                sum = 0;
+                for (cred in $scope.models.semesters[idx].creditPer) {
+                    sum += cred;
+                }
+                $scope.models.semesters[idx].creditTot = sum;
+            }
+        }
     };
 }]);
 
