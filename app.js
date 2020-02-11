@@ -2,7 +2,7 @@ angular.module('app', ['ngMaterial', 'ngRoute', 'ui.sortable']);
 
 angular.module('app').config(function ($routeProvider, $locationProvider) {
 
-    $locationProvider.hashPrefix('')
+    $locationProvider.hashPrefix('') //
 
     $routeProvider
         .when('/home', {
