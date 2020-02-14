@@ -33,7 +33,10 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
             "6": [],
             "7": [],
             "8": []
-        }
+        },
+        prereqs: {},     // will be key value pair of class name and prereqs list 
+        names: {},
+        conflictingClasses: []
     };
 
     ClassService.getCourseData().then((JSONdata) => {
@@ -46,33 +49,51 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
         //sort courses by semester
         angular.forEach($scope.computerScience, function (value, key) {
             $scope.models.semesters[value.semDefault].push(value.name);
-
         });
         console.log('Semesters:', $scope.models.semesters)
-        //console.log('compare', $scope.models.semesters[1])
-
+        //consolidate prerequisites
+        angular.forEach($scope.computerScience, function (value, key) {
+            $scope.models.prereqs[value.name] = value.prereqs;
+        }); 
+        //get class name and number pairs 
+        angular.forEach($scope.computerScience, function (value, key) {
+           $scope.models.names[value.name] = key
+        });
     })
 
     // Connects semester lists for drap and drop
     $scope.courseMap = {
         stop: function (e, ui) {
             //console.log("Updated Course Map", JSON.stringify($scope.models.semesters, undefined, 2))
-            $scope.checkSemesters();
-
+            currentClasses = []
+            // loop through semesters
+            for (let i = 1; i < 9; i++) {
+                length = $scope.models.semesters[i].length
+                // loop through classes
+                for (let j = 0; j < length; j++) {
+                    prereqs = $scope.models.prereqs[$scope.models.semesters[i][j]]
+                    if (prereqs != null) {
+                        plength = prereqs.length
+                        // loop through prerequisites 
+                        for (let m = 0; m < plength; m++) {
+                            if (currentClasses.includes(prereqs[m]) == false) {
+                                console.log("breaking a prerequisities rule: ")     // if prereq not in "taken" classes
+                                console.log(prereqs[m])
+                            } 
+                        }
+                    }
+                }
+                
+                // append on all classes you've taken so far, including this semester
+                for (let k = 0; k < length; k++) {
+                    classnum = $scope.models.names[$scope.models.semesters[i][k]]
+                    currentClasses.push(classnum)
+                }
+            }
         },
         placeholder: "course",
         connectWith: ".course-list"
     };
-
-    $scope.checkSemesters = function() {
-        console.log("test called");
-        /*for (let i = 1; i < 9; i++) {
-            //console.log($scope.models.semesters[i]);
-            for (let j = 1; j < i)
-        }*/
-    }
-
-
 }]);
 
 function MainController($scope) {
