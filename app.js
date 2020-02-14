@@ -49,17 +49,30 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
 
         });
         console.log('Semesters:', $scope.models.semesters)
+        //console.log('compare', $scope.models.semesters[1])
 
     })
 
     // Connects semester lists for drap and drop
     $scope.courseMap = {
         stop: function (e, ui) {
-            console.log("Updated Course Map", JSON.stringify($scope.models.semesters, undefined, 2))
+            //console.log("Updated Course Map", JSON.stringify($scope.models.semesters, undefined, 2))
+            $scope.checkSemesters();
+
         },
         placeholder: "course",
         connectWith: ".course-list"
     };
+
+    $scope.checkSemesters = function() {
+        console.log("test called");
+        /*for (let i = 1; i < 9; i++) {
+            //console.log($scope.models.semesters[i]);
+            for (let j = 1; j < i)
+        }*/
+    }
+
+
 }]);
 
 function MainController($scope) {
