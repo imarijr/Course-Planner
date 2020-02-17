@@ -29,3 +29,8 @@ md-list-item {
 md-toolbar {
     background-color: #C99700 !important;
 }
+
+.warning-text {
+    color: red;
+    margin-top: 10px; 
+}

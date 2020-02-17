@@ -62,8 +62,10 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
     })
 
     // Connects semester lists for drap and drop
+    $scope.classWarning = false
     $scope.courseMap = {
         stop: function (e, ui) {
+            $scope.classWarning = false
             //console.log("Updated Course Map", JSON.stringify($scope.models.semesters, undefined, 2))
             currentClasses = []
             // loop through semesters
@@ -79,6 +81,8 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
                             if (currentClasses.includes(prereqs[m]) == false) {
                                 console.log("breaking a prerequisities rule: ")     // if prereq not in "taken" classes
                                 console.log(prereqs[m])
+                                $scope.classWarning = true
+                                console.log($scope.classWarning)
                             } 
                         }
                     }
