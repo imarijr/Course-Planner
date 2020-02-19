@@ -52,7 +52,20 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
         console.log('Semesters:', $scope.models.semesters)
     })
 
+    $scope.getCredit = () => {
+            angular.forEach($scope.semesters, function (value, key) {
+            $scope.models.semesters[value.semDefault].courses.push(value.name);
+            $scope.models.semesters[value.semDefault].creditPer.push(value.credits);
 
+        });
+            angular.forEach($scope.models.semesters, function (value, key) {
+                
+                $scope.models.semesters[key].creditTot = $scope.models.semesters[key].creditPer.reduce((a,b) => {
+                    return a+b
+                });
+            })
+        
+    }
     // Connects semester lists for drap and drop
     $scope.courseMap = {
         stop: function (e, ui) {
@@ -60,16 +73,8 @@ angular.module('app').controller('second', ['$scope', "ClassService", function (
         },
         placeholder: "course",
         connectWith: ".course-list",
-        update: function (e, ui) {
-            var idx, cred, sum;
-            for (idx=1; idx<=8; idx++) {
-                sum = 0;
-                for (cred in $scope.models.semesters[idx].creditPer) {
-                    sum += cred;
-                }
-                $scope.models.semesters[idx].creditTot = sum;
-            }
-        }
+        
+        
     };
 }]);
 

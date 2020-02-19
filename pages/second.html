@@ -7,7 +7,7 @@
             <md-grid-tile ng-repeat="semester in models.semesters">
                 <!-- ui-sortable allows drag drop sorting of 
                     arrays courseMap is the drag drop group -->
-                <md-list ui-sortable="courseMap" class="course-list" ng-model="semester">
+                <md-list ui-sortable="courseMap" class="course-list"  ui-sortable-update="getCredit"ng-model="semester.courses">
                     <md-subheader class="md-no-sticky">Semester {{$index+1}}</md-subheader>
                     <!-- repeats each class in a semester -->
                     <md-list-item ng-repeat="item in semester.courses" class="md-2-line course">
