@@ -1,22 +1,23 @@
 angular.module('app', ['ngMaterial', 'ngRoute', 'ui.sortable']);
 
-angular.module('app').config(function ($routeProvider, $locationProvider) {
+//angular.module('app').config(function ($routeProvider, $locationProvider) {
+angular.module('app').config(function ($locationProvider) {
 
-    $locationProvider.hashPrefix('') //
+    // $locationProvider.hashPrefix('') //
 
-    $routeProvider
-        .when('/home', {
-            templateUrl: 'pages/main.html',
-            controller: 'MainController'
-        })
-        .when('/second', {
-            templateUrl: 'pages/second.html',
-            controller: 'second'
-        })
-        .otherwise({
-            templateUrl: 'pages/main.html',
-            controller: 'MainController'
-        })
+    // $routeProvider
+    //     .when('/home', {
+    //         templateUrl: 'pages/main.html',
+    //         controller: 'MainController'
+    //     })
+    //     .when('/second', {
+    //         templateUrl: 'pages/second.html',
+    //         controller: 'second'
+    //     })
+    //     .otherwise({
+    //         templateUrl: 'pages/main.html',
+    //         controller: 'MainController'
+    //     })
 })
 
 // Inline Annotation
