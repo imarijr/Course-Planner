@@ -3,5 +3,4 @@ angular
         'common',
         'components',
         'templates',
-        'ui-router'
     ]);
