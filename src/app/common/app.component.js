@@ -9,7 +9,11 @@ var app = {
     .config(function ($stateProvider) {
       $stateProvider
         .state('app', {
-          url: '/app',
-          component: 'app'
-        })
+              redirectTo:  "app",
+              url: '/',
+              component: 'app',
+
+            }
+          
+        )
     });
