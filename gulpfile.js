@@ -30,9 +30,14 @@ var argv = yargs.argv,
     developmentServerURL = '',
     productionServerURL = '',
     templates = ['src/app/**/*.html'],
-    modules = ['@uirouter/angularjs/release/angular-ui-router.js',
-    'parse/dist/parse.min.js',
-    'angular-parse/angular-parse.js',
+    modules = ['/jquery/dist/jquery.min.js',
+    'node_modules/jquery/src/jquery.js',
+    '/home/imarijr/dev/notre_dame/modern_web_dev/Course-Planner/node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js',
+    'node_modules/jquery-ui-dist/jquery-ui.min.js',
+    'node_modules/angular-ui-sortable/src/sortable.js',
+    '@uirouter/angularjs/release/angular-ui-router.js',
+    // 'parse/dist/parse.min.js',
+    // 'angular-parse/angular-parse.js',
   ]; // these are 3rd party libraries in the node_modules folder NOT *.module.js files
 
 /* utility function to generate Unix DateTime Stamp */
