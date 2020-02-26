@@ -1,4 +1,4 @@
-function AppController(AuthService, $state) {
+function AppController($state) {
     var ctrl = this;
     console.log("app controller")
   }

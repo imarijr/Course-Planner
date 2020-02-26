@@ -1,22 +1,12 @@
-  <header class="header">
-    <div class="header__fixed">
-      <div>
-        <div class="header__brand">
-          Contacts
-          <a ui-sref="new" class="header__button header__button--new-contact">
-            <i class="material-icons">add_circle_outline</i>
-            New Contact
-          </a>
-        </div>
-        <div class="header__logout">
-          {{ ::$ctrl.user.email }}
-          <a href="" ng-click="$ctrl.onLogout();">
-            <span class="header__button">
-              <i class="material-icons">power_settings_new</i>
-              Logout
-            </span>
-          </a>
-        </div>
+<header>
+  <md-toolbar>
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+          <div>
+              <a href="#"><i class="material-icons">home</i></a>
+          </div>
+          <div>
+              <h3>Course Planner</h3>
+          </div>
       </div>
-    </div>
-  </header>
+  </md-toolbar>
+</header>

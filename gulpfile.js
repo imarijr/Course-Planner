@@ -25,8 +25,8 @@ var gulp = require('gulp'),
 var argv = yargs.argv,
     root = 'src/',
     dist = 'dist',
-    styles = root + '/css/*.css',
-    scripts = 'src/app/**/*.js',
+    styles = root + 'style.css',
+    scripts = root + 'app/**/*.js',
     developmentServerURL = '',
     productionServerURL = '',
     templates = ['src/app/**/*.html'],
@@ -67,15 +67,15 @@ gulp.task('styles', function () {
     var filename = 'main-' + getDate() + '.min.css';
 
     gulp
-        .src('src/app/css/*.css')
+        .src('src/css/*.css')
         .pipe(cleanCSS({
             // processImport: false,
             compatibility: 'ie8'
         }))
         .pipe(concat(filename))
-        .pipe(gulp.dest('dist/css'));
+        .pipe(gulp.dest('dist/css/'));
 
-    return gulp.src('src/root.html', {
+    return gulp.src('src/index.html', {
             base: './'
         })
         .pipe(replace(/<link id=\"bundlecss\"[\s\S]*?>[\s\S]*?/gi, '<link id="bundlecss" rel="stylesheet" href="css/' + filename + '">')) //so find the script tag with an id of bundle, and replace its src.
