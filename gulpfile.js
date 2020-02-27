@@ -34,7 +34,7 @@ var argv = yargs.argv,
     'node_modules/jquery/src/jquery.js',
     'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js',
     'node_modules/jquery-ui-dist/jquery-ui.min.js',
-    'node_modules/angular-ui-sortable/src/sortable.js',
+    'angular-ui-sortable/src/sortable.js',
     '@uirouter/angularjs/release/angular-ui-router.js',
     '@uirouter/visualizer/bundles/visualizer.min.js'
     // 'parse/dist/parse.min.js',

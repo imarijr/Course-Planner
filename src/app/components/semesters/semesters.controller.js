@@ -19,7 +19,7 @@ function SemestersController($http, $state) {
     
     $http.get('../data.json').then((JSONdata) => {
         // all of the json data
-        ctrl.classData = JSONdata;
+        ctrl.classData = JSONdata.data.major;
         
         console.log('All Class Data:', JSONdata)
         // computer science classes only

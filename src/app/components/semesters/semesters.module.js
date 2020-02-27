@@ -1,6 +1,7 @@
 angular
     .module('components.semesters', [
         'ui.router',
-        'ngMaterial'
+        'ngMaterial',
+        'ui.sortable'
         
     ]);
