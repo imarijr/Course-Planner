@@ -1,6 +1,9 @@
 <app-nav></app-nav>
 <div class="course-map">
     <md-content layout-padding>
+        <div ng-show="$ctrl.classWarning" class="warning-text">
+            One or more classes need adjusting to satisfy prerequisite requirements. 
+        </div>
         <!-- Grid List to Keep even layout -->
         <md-grid-list  md-cols-sm="1" md-cols-md="1" md-cols-lg="2" md-cols-gt-lg="3" md-cols=1 md-row-height-md="1:1" md-row-height="1.2:1"
             md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
@@ -8,7 +11,7 @@
             <md-grid-tile ng-repeat="semester in $ctrl.models.semesters">
                 <!-- ui-sortable allows drag drop sorting of 
                     arrays courseMap is the drag drop group -->
-                <md-list ui-sortable="courseMap" class="course-list" ng-model="semester">
+                <md-list ui-sortable="$ctrl.courseMap" class="course-list" ng-model="semester">
                     <md-subheader class="md-no-sticky">Semester {{$index+1}}</md-subheader>
                     <!-- repeats each class in a semester -->
                     <md-list-item ng-repeat="item in semester" class="md-2-line course">
@@ -17,6 +20,7 @@
                         </div>
                         <md-divider></md-divider>
                     </md-list-item>
+                    <p>Credits: {{$ctrl.models.creditTotal[$index]}}</p>
                 </md-list>
             </md-grid-tile>
         </md-grid-list>
