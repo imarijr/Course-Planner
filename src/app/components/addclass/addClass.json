@@ -1,43 +1,42 @@
 {
 	"major": [{
-			"Economocis": {
-				"courses": [{
-					"ECON 10011": {
-						"name": "Principles of Microeconomics",
-						"prereqs": null,
-						"coreqs": [],
-						"credits": 3,
-						"taken": false,
-						"semReq": null,
-						"semDefault": 1,
-						"attributes": ["SOSC", "WKSS", "ZFYS"],
-						"description": "An introduction to economics, with particular attention to the pricing mechanism, competitive and monopolistic markets, government regulation of the economy, labor-management relations and programs, income determination and public policy, trade and the international economy."
-					},
-					"ECON 10020": {
-						"name": "Principles of MacroEconomics",
-						"prereqs": ["ECON 10010", "ECON 10091", "ECON 10011", "ECON 20010", "ECON 20011"],
-						"coreqs": [],
-						"credits": 3,
-						"taken": false,
-						"semReq": null,
-						"semDefault": 1,
-						"attributes": ["SOSC", "WKSS", "ZFYS"],
-						"description": "A continuation of introduction to economics with emphasis on the measurement of national economic performance, alternative explanations of short-run economic fluctuations and long-run economic growth, money and credit, fiscal and monetary policy."
-					},
-					"ECON 13181": {
-						"name": "Social Science University Seminar",
-						"prereqs": [],
-						"coreqs": [],
-						"credits": 3,
-						"taken": false,
-						"semReq": [1, 2],
-						"semDefault": 1,
-						"attributes": ["SOSC", "USEM", "WKSS"],
-						"description": "Economics sections will deal with different aspects of economic analysis and policy issues. The focus will be on understanding how economists think about theoretical issues and how they apply their analytical tools to real-world economic problems and policies. No background in economics is assumed."
-					}
-				}]
-			}
-		}],
+		"Economocis": {
+			"courses": [{
+				"ECON 10011": {
+					"name": "Principles of Microeconomics",
+					"prereqs": null,
+					"coreqs": [],
+					"credits": 3,
+					"taken": false,
+					"semReq": null,
+					"semDefault": 1,
+					"attributes": ["SOSC", "WKSS", "ZFYS"],
+					"description": "An introduction to economics, with particular attention to the pricing mechanism, competitive and monopolistic markets, government regulation of the economy, labor-management relations and programs, income determination and public policy, trade and the international economy."
+				},
+				"ECON 10020": {
+					"name": "Principles of MacroEconomics",
+					"prereqs": ["ECON 10010", "ECON 10091", "ECON 10011", "ECON 20010", "ECON 20011"],
+					"coreqs": [],
+					"credits": 3,
+					"taken": false,
+					"semReq": null,
+					"semDefault": 1,
+					"attributes": ["SOSC", "WKSS", "ZFYS"],
+					"description": "A continuation of introduction to economics with emphasis on the measurement of national economic performance, alternative explanations of short-run economic fluctuations and long-run economic growth, money and credit, fiscal and monetary policy."
+				},
+				"ECON 13181": {
+					"name": "Social Science University Seminar",
+					"prereqs": [],
+					"coreqs": [],
+					"credits": 3,
+					"taken": false,
+					"semReq": [1, 2],
+					"semDefault": 1,
+					"attributes": ["SOSC", "USEM", "WKSS"],
+					"description": "Economics sections will deal with different aspects of economic analysis and policy issues. The focus will be on understanding how economists think about theoretical issues and how they apply their analytical tools to real-world economic problems and policies. No background in economics is assumed."
+				}
+			}]
+		},
 		"Film Television and Theatre": {
 			"courses": [{
 				"FTT 10101": {
@@ -64,5 +63,5 @@
 				}
 			}]
 		}
-
+	}]
 }

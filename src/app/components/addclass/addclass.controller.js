@@ -13,12 +13,29 @@ function AddClassController($state, $mdDialog, $http) {
       // });
       console.log(JSONdata.data.major[0])
       console.log("add class controller")
-      ctrl.doSecondaryAction = function(event) {
+
+      ctrl.jsonmajors = JSONdata.data.major[0]
+      ctrl.majors = []
+      angular.forEach(ctrl.jsonmajors, function (value, key) {
+        ctrl.majors.push(key)
+      })
+
+      ctrl.allClasses = []
+      angular.forEach(ctrl.majors, function (key) {
+        angular.forEach(ctrl.jsonmajors[key]['courses'][0], function(key) {
+          ctrl.allClasses.push(key)
+        })
+      })
+
+      console.log(ctrl.majors)
+      console.log(ctrl.allClasses)
+
+      ctrl.doSecondaryAction = function(event, description) {
           $mdDialog.show(
             $mdDialog.alert()
               .title("Course Description")
-              .textContent(JSONdata.data.major[0].Economocis.courses[0]['ECON 10011'].description)
-              .ok('Neat!')
+              .textContent(description)
+              .ok('Ok')
               .targetEvent(event)
           );
         };
