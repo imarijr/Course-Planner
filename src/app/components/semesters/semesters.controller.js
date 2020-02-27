@@ -19,9 +19,9 @@ function SemestersController($http, $state) {
     
     $http.get('../data.json').then((JSONdata) => {
         // all of the json data
-        ctrl.classData = JSONdata;
+        ctrl.classData = JSONdata.data.major;
         
-        console.log('All Class Data:', JSONdata)
+        console.log('All Class Data:', ctrl.classData)
         // computer science classes only
         ctrl.computerScience = ctrl.classData[0].ComputerScience.courses[0]
         console.log('Computer Science Courses:', ctrl.computerScience)
@@ -41,14 +41,7 @@ function SemestersController($http, $state) {
         },
         placeholder: "course",
         connectWith: ".course-list"
-    };
-
-    
-
-        ctrl.getCourseData = getCourseData
-        function getCourseData(){
-            return this.$http.get('../../../data.json')
-        }
+    }
     
     
 
