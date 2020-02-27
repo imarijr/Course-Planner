@@ -185,6 +185,14 @@ gulp.task('copy-html', function () {
         .pipe(gulp.dest(dist));
 });
 
+/* Added to try and move our data.json to dist folder */ 
+
+gulp.task('copy-data.json', function() {
+    return gulp
+        .src('src/app/components/semesters/data.json')
+        .pipe(gulp.dest(dist));
+})
+
 // copy images
 gulp.task('copy-img', function () {
     return gulp
@@ -211,9 +219,9 @@ gulp.task('connect-app', function () {
 });
 
 gulp.task('default', ['clean'], function (callback) {
-    runSequence('scripts', 'styles', 'copy-html', 'copy-img', 'copy-fonts', 'connect-app', 'watch', callback);
+    runSequence('scripts', 'styles', 'copy-html', 'copy-data.json', 'copy-img', 'copy-fonts', 'connect-app', 'watch', callback);
 });
 
 gulp.task('production', ['clean'], function (callback) {
-    runSequence('scripts', 'styles', 'copy-html', 'copy-img', 'copy-fonts', callback);
+    runSequence('scripts', 'styles', 'copy-html', 'copy-data.json', 'copy-img', 'copy-fonts', callback);
 });
