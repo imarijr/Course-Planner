@@ -17,7 +17,7 @@ function SemestersController($http, $state) {
         }
     };
     
-    $http.get('./data.json').then((JSONdata) => {
+    $http.get('../data.json').then((JSONdata) => {
         // all of the json data
         ctrl.classData = JSONdata;
         
