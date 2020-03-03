@@ -1,7 +1,9 @@
 <app-nav></app-nav>
+<!-- stateful component -->
 <md-input-container class="md-block" flex-gt-sm>
     <h1 class="additional-options">Additional Class Options</h1> 
   </md-input-container>
+  <!-- stateless component -->
   <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course}}" class="secondary-button-padding-class">
     <p>{{course.name}}</p>
     <md-button class="md-secondary" ng-click="$ctrl.doSecondaryAction($event, course.description)">Description</md-button>
