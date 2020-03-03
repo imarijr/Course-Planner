@@ -1,7 +1,7 @@
-function AddClassController($state, $mdDialog, $http) {
+function AddClassController($state, $mdDialog, $http, JSONService) {
     var ctrl = this;
 
-    $http.get('../addClass.json').then((JSONdata) => {
+    JSONService.getClassData().then((JSONdata) => {
       // all of the json data
       ctrl.classData = JSONdata;
       
