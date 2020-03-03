@@ -1,19 +1,13 @@
-# Heading 1
+# 0.2 (2020-03-03)
 
-0.2 (2020-03-03)
-
-## Heading 2
-
-Contributors
+## Contributors
 
 * Luke Frasier
 * Bailey Klaus
 * Imari McKinney
 * Lauren Bakke
 
-## Heading 3
-
-Features
+## Features
 
 * **credit totals:** each semester now has a running credit total that updates when the semester columns change
 
@@ -23,8 +17,6 @@ Features
 
 * **additional class options page** this new page displays additional classes which could be added (actually implementing adding the classes will be in the next release) and allows the user to click a "description" button to get the class's description.
 
-## Heading 4
-
-Breaking Changes
+## Breaking Changes
 
 * **component architecture** refactored our code from the MVC model to component architecture.
