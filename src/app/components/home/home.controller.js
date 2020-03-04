@@ -1,3 +1,4 @@
+// display the major options in the dropdown of home
 function HomeController($state) {
     var ctrl = this;
       this.$onInit = function () {

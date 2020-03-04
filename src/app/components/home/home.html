@@ -3,6 +3,7 @@
     <h2>Choose your major to get started.</h2>
     <label>My Major</label>
     <md-select ng-model="majorChosen" ng-change="onChange()">
+      <!-- stateful component -->
       <md-option ng-repeat="major in $ctrl.majors" value="{{major}}">
         {{major}}
       </md-option>
