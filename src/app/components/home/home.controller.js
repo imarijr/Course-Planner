@@ -1,7 +1,9 @@
 function HomeController($state) {
     var ctrl = this;
-    console.log("home controller")
-    ctrl.majors = ['Computer Science', 'Computer Engineering']
+      this.$onInit = function () {
+      console.log("home controller")
+      ctrl.majors = ['Computer Science', 'Computer Engineering']
+      }
   }
 
 

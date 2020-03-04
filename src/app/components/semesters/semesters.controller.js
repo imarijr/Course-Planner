@@ -1,4 +1,4 @@
-function SemestersController($http, $state) {
+function SemestersController($http, JSONService) {
     var ctrl = this;
     console.log("semesters controller")
 
@@ -22,7 +22,7 @@ function SemestersController($http, $state) {
         conflictingClasses: []
     };
     
-    $http.get('../data.json').then((JSONdata) => {
+    JSONService.getSemesterData().then((JSONdata) => {
         // all of the json data
         ctrl.classData = JSONdata.data.major;
         
