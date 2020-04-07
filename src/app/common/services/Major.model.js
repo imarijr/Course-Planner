@@ -43,9 +43,10 @@ class MajorModel {
 
         //var q = new Parse.Query(this.New()); 
         return new this.Parse.Query(this.New())
-        .select("majorName")
-        .find().then(function(result) {
-            console.log('result', result); 
+        //.select("majorName")
+        .find().then(result => {
+            //this.Parse.defineAttributes(result, this.fields); 
+            this.data = result
             return Promise.resolve(result);
         })
         .catch(error => Promise.reject(error));
