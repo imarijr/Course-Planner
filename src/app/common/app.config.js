@@ -1,8 +1,8 @@
 function config(ParseProvider) {
   ParseProvider.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
-  PaymentRequest.initialize(
-    'BCrUQVkk80pCdeImSXoKXL5ZCtyyEZwbN7mAb11f', // This is your Application ID
-    '4wPYRKbpTJeCdmFNaS31AiQZ8344aaYubk6Uo8VW' // This is your Javascript key
+  ParseProvider.initialize(
+    'UZwpFbGYPWGGKsVAt5vRzPbH1lSdX6u77OF3KrD5', // This is your Application ID
+    'IpK6jyzdSSOGfqfM5SbA90UmakjLChfbEjcaPFBS' // This is your Javascript key
   );
 }
 

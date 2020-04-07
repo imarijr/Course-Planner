@@ -5,10 +5,15 @@ function HomeController($state, MajorModel) {
       this.$onInit = function () {
       console.log("home controller")
       // ctrl.majors = ['Computer Science', 'Computer Engineering']
+      let majors_list = []
       MajorModel.getMajors().then(function(majors) {
-        ctrl.majors = majors;
+        for (var i = 0; i < majors.length; i++) {
+          majors_list.push(majors[i].attributes.majorName)
+        }
+        ctrl.majors = majors_list;
       })
-      }
+      //console.log(MajorModel.getById('1ZCcvgo8N6'))
+    }
   }
 
 
