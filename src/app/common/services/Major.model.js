@@ -39,16 +39,16 @@ class MajorModel {
             .catch(error => Promise.reject(error));
     }
     getMajors() {
-        //var Major = Parse.Object.extend("Major"); 
-        var q = new Parse.Query("Major"); 
+        var Major = Parse.Object.extend("Major"); 
+        var q = new Parse.Query(Major); 
 
-        q.select("majorName");
+        //q.select('majorName');
         q.find().then(function(result) {
             console.log('result', result); 
-            return Promise.resolve(results);
+            return Promise.resolve(result);
         })
         .catch(error => Promise.reject(error));
-        //return result();
+        //return result;
         // return new this.Parse.Query(this.New())
         //     .select("majorName")
         //     .find().then(result => {
