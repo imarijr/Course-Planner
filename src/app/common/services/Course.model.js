@@ -28,12 +28,12 @@ class CourseModel {
         if (angular.isUndefined(obj)) {
             const parseObject = new this.Parse.Object(this.name);
             this.Parse.defineAttributes(parseObject, this.fields);
-            parseObject.major = new this.Parse.Object(this.MajorModel.name)
-            this.Parse.defineAttributes(parseObject.major); 
+            // parseObject.major = new this.Parse.Object(this.MajorModel.name)
+            // this.Parse.defineAttributes(parseObject.major); 
             return parseObject;
         } else {
             this.Parse.defineAttributes(obj, this.fields);
-            this.Parse.defineAttributes(obj.major, this.MajorModel.fields); 
+            // this.Parse.defineAttributes(obj.major, this.MajorModel.fields); 
             return obj;
         }
     }
@@ -96,6 +96,15 @@ class CourseModel {
             }).catch(error => Promise.reject(error))
     }
 
+    getCourseBySem(semDef) {
+        return new this.Parse.Query(this.New())
+            .equalTo("semesterDefault", semDef)
+            .find().then(result => {
+                this.data = result;
+                return Promise.resolve(result);
+            })
+            .catch(error => Promise.reject(error));
+        }
 }
 
 angular

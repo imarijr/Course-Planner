@@ -1,4 +1,4 @@
-function SemestersController($http, JSONService) {
+function SemestersController($http, JSONService, CourseModel) {
     var ctrl = this;
     console.log("semesters controller")
 
@@ -6,14 +6,14 @@ function SemestersController($http, JSONService) {
     ctrl.models = {
         selected: null,
         semesters: {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": []
+            1: [],
+            2: [],
+            3: [],
+            4: [],
+            5: [],
+            6: [],
+            7: [],
+            8: []
         },
         prereqs: {}, // will be key value pair of class name and prereqs list 
         names: {},
@@ -22,36 +22,66 @@ function SemestersController($http, JSONService) {
         conflictingClasses: []
     };
     
-    JSONService.getSemesterData().then((JSONdata) => {
-        // all of the json data
-        ctrl.classData = JSONdata.data.major;
-        
-        console.log('All Class Data:', ctrl.classData)
-        // computer science classes only
-        ctrl.computerScience = ctrl.classData[0].ComputerScience.courses[0]
-        console.log('Computer Science Courses:', ctrl.computerScience)
-        //sort courses by semester
-        angular.forEach(ctrl.computerScience, function (value, key) {
-            ctrl.models.semesters[value.semDefault].push(value.name);
-        });
-        console.log('Semesters:', ctrl.models.semesters)
-        //consolidate prerequisites
-        angular.forEach(ctrl.computerScience, function (value, key) {
-            ctrl.models.prereqs[value.name] = value.prereqs;
-        });
-        //get class name and number pairs 
-        angular.forEach(ctrl.computerScience, function (value, key) {
-            ctrl.models.names[value.name] = key
-            ctrl.models.credits[value.name] = value.credits
-        });
-        // Initial Credit Count per semester
-        angular.forEach(ctrl.models.semesters, function (value, key) {
-            for (let i = 0; i < value.length; i++) {
-                ctrl.models.creditTotal[key - 1] += ctrl.models.credits[ctrl.models.semesters[key][i]]
+
+    // instaniate default info 
+    for (var sem=1; sem<=8; sem++) {
+        console.log("SEM #", sem); 
+        CourseModel.getCourseBySem(sem).then(function(courses) {
+            console.log("this sem's classes", courses);
+            for (var idx=0; idx<courses.length; idx++) {
+                let className = courses[idx].attributes.courseName;   // ie Calculus II 
+                console.log(className);
+                if (className) {
+                    ctrl.models.semesters[sem].push(className);
+                    ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+                    ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+                    ctrl.models.credits[className] = courses[idx].atrributes.credits;           // ie 3
+                }
             }
         })
+    }
 
-    }) 
+    angular.forEach(ctrl.models.semesters, function (value, key) {
+        for (let i=0; i<value.length; i++) {
+            ctrl.models.creditTotal[key - 1] += ctrl.models.credits[ctrl.models.semesters[key][i]]
+        }
+    })
+    console.log("default classes per semester: ", ctrl.models.semesters);
+
+
+    // JSONService.getSemesterData().then((JSONdata) => {
+    //     // all of the json data
+    //     ctrl.classData = JSONdata.data.major;
+        
+    //     console.log('All Class Data:', ctrl.classData)
+    //     // computer science classes only
+    //     ctrl.computerScience = ctrl.classData[0].ComputerScience.courses[0]
+    //     console.log('Computer Science Courses:', ctrl.computerScience)
+    //     //sort courses by semester
+    //     angular.forEach(ctrl.computerScience, function (value, key) {
+    //         ctrl.models.semesters[value.semDefault].push(value.name);
+
+    //     });
+    //     console.log('Semesters:', ctrl.models.semesters)
+    //     //consolidate prerequisites
+    //     angular.forEach(ctrl.computerScience, function (value, key) {
+    //         ctrl.models.prereqs[value.name] = value.prereqs;
+    //     });
+    //     //get class name and number pairs 
+    //     angular.forEach(ctrl.computerScience, function (value, key) {
+    //         ctrl.models.names[value.name] = key
+    //         console.log("value.name", value.name, "key", key)
+    //         ctrl.models.credits[value.name] = value.credits
+
+    //     });
+    //     // Initial Credit Count per semester
+    //     angular.forEach(ctrl.models.semesters, function (value, key) {
+    //         for (let i = 0; i < value.length; i++) {
+    //             ctrl.models.creditTotal[key - 1] += ctrl.models.credits[ctrl.models.semesters[key][i]]
+    //         }
+    //     })
+
+    // })
 
     // Connects semester lists for drap and drop
     ctrl.classWarning = false
