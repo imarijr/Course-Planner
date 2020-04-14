@@ -38,28 +38,24 @@ class MajorModel {
             })
             .catch(error => Promise.reject(error));
     }
-    getMajors() {
-        //var Major = Parse.Object.extend("Major"); 
-
-        //var q = new Parse.Query(this.New()); 
+    getByName(name) {
         return new this.Parse.Query(this.New())
-        //.select("majorName")
+            .equalTo("majorName", name)
+            .find().then(result => {
+                console.log('result', result)
+                this.Parse.defineAttributes(result, this.fields); 
+                this.data = result; 
+                return Promise.resolve(result); 
+            })
+            .catch(error => Promise.reject(error))
+    }
+    getMajors() {
+        return new this.Parse.Query(this.New())
         .find().then(result => {
-            //this.Parse.defineAttributes(result, this.fields); 
             this.data = result
             return Promise.resolve(result);
         })
         .catch(error => Promise.reject(error));
-        //return result;
-        // return new this.Parse.Query(this.New())
-        //     .select("majorName")
-        //     .find().then(result => {
-        //         console.log('result', result)
-        //         // this.Parse.defineAttributes(result, this.fields);
-        //         // this.data = result;
-        //         return Promise.resolve(results);
-        //     })
-        //     .catch(error => Promise.reject(error));
     }
 }
 

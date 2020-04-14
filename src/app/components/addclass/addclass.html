@@ -7,4 +7,6 @@
   <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course}}" class="secondary-button-padding-class">
     <p>{{course.name}}</p>
     <md-button class="md-secondary" ng-click="$ctrl.doSecondaryAction($event, course.description)">Description</md-button>
+    <!--<span class="material-icons">add</span>-->
+    <md-button class="md-secondary" ng-click="$ctrl.addCourseToSemester($event, course)">add class</md-button>
   </md-list-item>

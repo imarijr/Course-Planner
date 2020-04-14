@@ -1,4 +1,4 @@
-function AddClassController($state, $mdDialog, $http, JSONService) {
+function AddClassController($state, $mdDialog, $http, JSONService, CourseModel) {
     var ctrl = this;
 
     JSONService.getClassData().then((JSONdata) => {
@@ -36,7 +36,21 @@ function AddClassController($state, $mdDialog, $http, JSONService) {
               .ok('Ok')
               .targetEvent(event)
           );
-        };
+      };
+
+      ctrl.addCourseToSemester = function(event, course) {
+        CourseModel.getByName(course.name).then(function(course) {
+          console.log('course found. id: ', course.id);
+          console.log('sending id to setSemesterDefault')
+          CourseModel.setSemesterDefault(course.id, 3).then(function(success) {
+            console.log('set new default')
+          }).catch(function () {
+            console.log('failed to set new default.'); 
+          })
+        }).catch(function() {
+          console.log("could not find course")
+        })
+      }
 
   })
 

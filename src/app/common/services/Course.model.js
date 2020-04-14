@@ -11,7 +11,7 @@ class CourseModel {
         this.MajorModel = MajorModel
         this.data = {};
         this.collection = [];
-        this.name = 'CourseModel';
+        this.name = 'Course';
         this.fields = [
             'courseName',
             'corequisites',
@@ -38,8 +38,10 @@ class CourseModel {
         }
     }
     getById(id) {
+        console.log(id)
         return new this.Parse.Query(this.New())
-            .get(id)
+            .equalTo("objectId", id)
+            .find()
             .then(result => {
                 console.log('result', result)
                 this.Parse.defineAttributes(result, this.fields);
@@ -47,6 +49,21 @@ class CourseModel {
                 return Promise.resolve(result);
             })
             .catch(error => Promise.reject(error));
+    }
+
+    getByName(name) {
+        console.log("name passed in: ", name)
+        return new this.Parse.Query(this.New())
+            .equalTo("courseName", name)
+            .find()
+            .then(result => {
+                console.log('result: ', result[0]);         // no two courses should have the same name
+                                                                    // so should only be one result
+                //this.Parse.defineAttributes(result[0], this.fields); 
+                //this.data = result[0]; 
+                return Promise.resolve(result[0]); 
+            })
+            .catch(error => Promise.reject(error))
     }
 
     getByMajor(major) {
@@ -64,6 +81,19 @@ class CourseModel {
                 return Promise.resolve(courses);
             })
             .catch(error => Promise.reject(error));
+    }
+
+    setSemesterDefault(id, sem) {
+        myobj = new this.Parse.Query(this.New())
+            .get(id)
+            .then(result => {
+                // this.Parse.defineAttributes(result, this.fields);
+                // this.data = result; 
+                result.set("semesterDefault", sem); 
+                console.log('new default should be 3: ', result); 
+                result.save(); 
+                return Promise.resolve(result); 
+            }).catch(error => Promise.reject(error))
     }
 
 }

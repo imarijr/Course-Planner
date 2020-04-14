@@ -24,7 +24,7 @@
                     </md-list-item>
                     <!-- display the running total of credits for each semester-->
                     <p>Credits: {{$ctrl.models.creditTotal[$index]}}</p>
-                    <md-button ng-href="/#!/addclass">Add Class</md-button>
+                    <md-button ng-click = "$ctrl.saveSem(semester.key)" ng-href="/#!/addclass">Add Class</md-button>
                 </md-list>
             </md-grid-tile>
         </md-grid-list>

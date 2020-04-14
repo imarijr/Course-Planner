@@ -33,7 +33,6 @@ function SemestersController($http, JSONService) {
         //sort courses by semester
         angular.forEach(ctrl.computerScience, function (value, key) {
             ctrl.models.semesters[value.semDefault].push(value.name);
-
         });
         console.log('Semesters:', ctrl.models.semesters)
         //consolidate prerequisites
@@ -44,7 +43,6 @@ function SemestersController($http, JSONService) {
         angular.forEach(ctrl.computerScience, function (value, key) {
             ctrl.models.names[value.name] = key
             ctrl.models.credits[value.name] = value.credits
-
         });
         // Initial Credit Count per semester
         angular.forEach(ctrl.models.semesters, function (value, key) {
@@ -53,7 +51,7 @@ function SemestersController($http, JSONService) {
             }
         })
 
-    })
+    }) 
 
     // Connects semester lists for drap and drop
     ctrl.classWarning = false
@@ -103,6 +101,10 @@ function SemestersController($http, JSONService) {
         connectWith: ".course-list"
     }
     
+    ctrl.saveSem = function(semester) {
+        console.log("semester clicked: ", semester); 
+        /* add what we need here once we have the right way to get the semester - will then need to pass it to the add class */ 
+    }
     
 
   }
