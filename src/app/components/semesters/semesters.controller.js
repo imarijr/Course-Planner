@@ -2,7 +2,6 @@ function SemestersController($http, JSONService, CourseModel) {
     var ctrl = this;
     console.log("semesters controller")
 
-
     ctrl.models = {
         selected: null,
         semesters: {
@@ -22,66 +21,101 @@ function SemestersController($http, JSONService, CourseModel) {
         conflictingClasses: []
     };
     
-
-    // instaniate default info 
-    for (var sem=1; sem<=8; sem++) {
-        console.log("SEM #", sem); 
-        CourseModel.getCourseBySem(sem).then(function(courses) {
-            console.log("this sem's classes", courses);
-            for (var idx=0; idx<courses.length; idx++) {
-                let className = courses[idx].attributes.courseName;   // ie Calculus II 
-                console.log(className);
-                if (className) {
-                    ctrl.models.semesters[sem].push(className);
-                    ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
-                    ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
-                    ctrl.models.credits[className] = courses[idx].atrributes.credits;           // ie 3
-                }
-            }
-        })
-    }
-
-    angular.forEach(ctrl.models.semesters, function (value, key) {
-        for (let i=0; i<value.length; i++) {
-            ctrl.models.creditTotal[key - 1] += ctrl.models.credits[ctrl.models.semesters[key][i]]
+    // sem 1 
+    var courses =  CourseModel.getCourseBySem(1).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[1].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
         }
     })
-    console.log("default classes per semester: ", ctrl.models.semesters);
 
+    // sem 2 
+    courses =  CourseModel.getCourseBySem(2).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[2].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+        }
+    })
 
-    // JSONService.getSemesterData().then((JSONdata) => {
-    //     // all of the json data
-    //     ctrl.classData = JSONdata.data.major;
-        
-    //     console.log('All Class Data:', ctrl.classData)
-    //     // computer science classes only
-    //     ctrl.computerScience = ctrl.classData[0].ComputerScience.courses[0]
-    //     console.log('Computer Science Courses:', ctrl.computerScience)
-    //     //sort courses by semester
-    //     angular.forEach(ctrl.computerScience, function (value, key) {
-    //         ctrl.models.semesters[value.semDefault].push(value.name);
+    // sem 3 
+    courses =  CourseModel.getCourseBySem(3).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[3].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+        }
+    })
 
-    //     });
-    //     console.log('Semesters:', ctrl.models.semesters)
-    //     //consolidate prerequisites
-    //     angular.forEach(ctrl.computerScience, function (value, key) {
-    //         ctrl.models.prereqs[value.name] = value.prereqs;
-    //     });
-    //     //get class name and number pairs 
-    //     angular.forEach(ctrl.computerScience, function (value, key) {
-    //         ctrl.models.names[value.name] = key
-    //         console.log("value.name", value.name, "key", key)
-    //         ctrl.models.credits[value.name] = value.credits
+    // sem 4
+    courses =  CourseModel.getCourseBySem(4).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[4].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+        }
+    })
+    
+    // sem 5
+    courses =  CourseModel.getCourseBySem(5).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[5].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+        }
+    })
+    
+    // sem 6
+    courses =  CourseModel.getCourseBySem(6).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[6].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+        }
+    })
+   
+    // sem 7
+    courses =  CourseModel.getCourseBySem(7).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[7].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+        }
+    })
+    
+    // sem 8
+    courses =  CourseModel.getCourseBySem(8).then(function(courses) {
+        for (var idx=0; idx<courses.length; idx++) {
+            var className = courses[idx].attributes.courseName;   // ie "Calculus II" 
+            ctrl.models.semesters[8].push(className);
+            ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
+            ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
+            ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+        }
+    })
 
-    //     });
-    //     // Initial Credit Count per semester
-    //     angular.forEach(ctrl.models.semesters, function (value, key) {
-    //         for (let i = 0; i < value.length; i++) {
-    //             ctrl.models.creditTotal[key - 1] += ctrl.models.credits[ctrl.models.semesters[key][i]]
-    //         }
-    //     })
-
-    // })
+    // current credit totals 
+    angular.forEach(ctrl.models.semesters, function (value, key) {
+        for (let i=0; i<value.length; i++) {
+            ctrl.models.creditTotal[key-1] += ctrl.models.credits[ctrl.models.semesters[key][i]]
+        }
+    })
+    
 
     // Connects semester lists for drap and drop
     ctrl.classWarning = false
@@ -117,7 +151,6 @@ function SemestersController($http, JSONService, CourseModel) {
                     }
                 }
 
-
                 // append on all classes you've taken so far, including this semester
                 for (let k = 0; k < length; k++) {
                     var classnum = ctrl.models.names[ctrl.models.semesters[i][k]]
@@ -135,8 +168,6 @@ function SemestersController($http, JSONService, CourseModel) {
         console.log("semester clicked: ", semester); 
         /* add what we need here once we have the right way to get the semester - will then need to pass it to the add class */ 
     }
-    
-
   }
 
 angular
