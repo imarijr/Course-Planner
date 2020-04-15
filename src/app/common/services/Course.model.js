@@ -104,7 +104,15 @@ class CourseModel {
                 return Promise.resolve(result);
             })
             .catch(error => Promise.reject(error));
-        }
+    }
+
+    getCourses() {
+        return new this.Parse.Query(this.New())
+            .find().then(result => {
+                return Promise.resolve(result); 
+            })
+            .catch(error => Promise.reject(error)); 
+    }
 }
 
 angular

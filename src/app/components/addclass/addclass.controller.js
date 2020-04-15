@@ -1,31 +1,44 @@
 function AddClassController($state, $mdDialog, $http, JSONService, CourseModel) {
     var ctrl = this;
 
-    JSONService.getClassData().then((JSONdata) => {
-      // all of the json data
-      ctrl.classData = JSONdata;
+    // JSONService.getClassData().then((JSONdata) => {
+    //   // all of the json data
+    //   ctrl.classData = JSONdata;
       
-      console.log('All Class Data:', JSONdata)
-      console.log(JSONdata.data.major[0])
-      console.log("add class controller")
+    //   console.log('All Class Data:', JSONdata)
+    //   console.log(JSONdata.data.major[0])
+    //   console.log("add class controller")
 
-      // get all the majors in the addClass.json 
-      ctrl.jsonmajors = JSONdata.data.major[0]
-      ctrl.majors = []
-      angular.forEach(ctrl.jsonmajors, function (value, key) {
-        ctrl.majors.push(key)
-      })
+    //   // get all the majors in the addClass.json 
+    //   ctrl.jsonmajors = JSONdata.data.major[0]
+    //   ctrl.majors = []
+    //   angular.forEach(ctrl.jsonmajors, function (value, key) {
+    //     ctrl.majors.push(key)
+    //   })
 
-      // go through each of the classes of the major to get the name
-      ctrl.allClasses = []
-      angular.forEach(ctrl.majors, function (key) {
-        angular.forEach(ctrl.jsonmajors[key]['courses'][0], function(key) {
-          ctrl.allClasses.push(key)
-        })
-      })
+    //   // go through each of the classes of the major to get the name
+    //   ctrl.allClasses = []
+    //   angular.forEach(ctrl.majors, function (key) {
+    //     angular.forEach(ctrl.jsonmajors[key]['courses'][0], function(key) {
+    //       ctrl.allClasses.push(key)
+    //     })
+    //   })
 
-      console.log(ctrl.majors)
-      console.log(ctrl.allClasses)
+    ctrl.allClasses = []
+    CourseModel.getCourses().then(function(courses) {
+      console.log('courses: ', courses); 
+      for (var i = 0; i < courses.length; i++) {
+        if (courses[i].attributes.semesterDefault == null) {
+          ctrl.allClasses.push(courses[i])
+          console.log(courses[i].attributes.courseName)
+        }
+      }
+      console.log('courses listed...', ctrl.allClasses)
+    }).catch(function() {
+      console.log("couldn't fetch courses")
+    })
+
+      console.log('courses listed...', ctrl.allClasses)
 
       // go through each of the classes to get the description of the class
       ctrl.doSecondaryAction = function(event, description) {
@@ -39,7 +52,7 @@ function AddClassController($state, $mdDialog, $http, JSONService, CourseModel) 
       };
 
       ctrl.addCourseToSemester = function(event, course) {
-        CourseModel.getByName(course.name).then(function(course) {
+        CourseModel.getByName(course).then(function(course) {
           console.log('course found. id: ', course.id);
           console.log('sending id to setSemesterDefault')
           CourseModel.setSemesterDefault(course.id, 3).then(function(success) {
@@ -52,7 +65,6 @@ function AddClassController($state, $mdDialog, $http, JSONService, CourseModel) 
         })
       }
 
-  })
 
   }
   

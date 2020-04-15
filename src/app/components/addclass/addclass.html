@@ -4,9 +4,9 @@
     <h1 class="additional-options">Additional Class Options</h1> 
   </md-input-container>
   <!-- stateless component -->
-  <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course}}" class="secondary-button-padding-class">
-    <p>{{course.name}}</p>
-    <md-button class="md-secondary" ng-click="$ctrl.doSecondaryAction($event, course.description)">Description</md-button>
+  <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course.attributes.courseName}}" class="secondary-button-padding-class">
+    <p>{{course.attributes.courseId}}</p>
+    <md-button class="md-secondary" ng-click="$ctrl.doSecondaryAction($event, course.attributes.courseName)">Description</md-button>
     <!--<span class="material-icons">add</span>-->
-    <md-button class="md-secondary" ng-click="$ctrl.addCourseToSemester($event, course)">add class</md-button>
+    <md-button class="md-secondary" ng-click="$ctrl.addCourseToSemester($event, course.attributes.courseName)">add class</md-button>
   </md-list-item>
