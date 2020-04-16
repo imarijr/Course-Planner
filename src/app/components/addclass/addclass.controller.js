@@ -43,5 +43,6 @@ function AddClassController($state, $mdDialog, $http, JSONService) {
   }
   
 angular
-    .module('components.addclass')
+   .module('components.addclass')
+    //.module('components.semesters')
     .controller('AddClassController', AddClassController);

@@ -3,5 +3,6 @@ angular
     ['components.home',
     'components.semesters',
     'components.addclass',
+    'components.semestersAddclass',
     'ngMaterial'
 ]); 
