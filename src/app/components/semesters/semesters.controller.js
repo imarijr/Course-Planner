@@ -1,4 +1,4 @@
-function SemestersController($http, JSONService, CourseModel) {
+function SemestersController($http, $mdDialog, JSONService, CourseModel) {
     var ctrl = this;
     console.log("semesters controller")
 
@@ -164,11 +164,77 @@ function SemestersController($http, JSONService, CourseModel) {
         connectWith: ".course-list"
     }
     
-    ctrl.saveSem = function(semester) {
-        console.log("semester clicked: ", semester); 
-        /* add what we need here once we have the right way to get the semester - will then need to pass it to the add class */ 
+    ctrl.addClass = function(event, semester) {
+
+        var config = {
+            parent: angular.element(document.body),
+            controller: AddClassController,
+            controllerAs: '$ctrl',
+            disableParentScroll: true, 
+            templateUrl: './addclass.html',
+            hasBackdrop: true, 
+            trapFocus: true, 
+            clickOutsideToClose: true, 
+            escapeToClose: true, 
+            focusOnOpen: true,
+            fullscreen: true, 
+            targetEvent: event
+        }
+
+        $mdDialog.show(config)
+            .then(answer => {
+                console.log('answer: ', answer); 
+            })
+
+
+    function AddClassController($state, $mdDialog, $http, JSONService, CourseModel) {
+        var ctrl = this;
+
+        ctrl.allClasses = []
+        CourseModel.getCourses().then(function(courses) {
+        console.log('courses: ', courses); 
+        for (var i = 0; i < courses.length; i++) {
+            if (courses[i].attributes.semesterDefault == null) {
+            ctrl.allClasses.push(courses[i])
+            console.log(courses[i].attributes.courseName)
+            }
+        }
+        console.log('courses listed...', ctrl.allClasses)
+        }).catch(function() {
+        console.log("couldn't fetch courses")
+        })
+
+        console.log('courses listed...', ctrl.allClasses)
+
+        // go through each of the classes to get the description of the class
+        ctrl.doSecondaryAction = function(event, description) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .title("Course Description")
+                .textContent(description)
+                .ok('Ok')
+                .targetEvent(event)
+            );
+        };
+
+        ctrl.addCourseToSemester = function(event, course) {
+            CourseModel.getByName(course).then(function(course) {
+            console.log('course found. id: ', course.id);
+            console.log('sending id to setSemesterDefault')
+            CourseModel.setSemesterDefault(course.id, 3).then(function(success) {
+                console.log('set new default')
+            }).catch(function () {
+                console.log('failed to set new default.'); 
+            })
+            }).catch(function() {
+            console.log("could not find course")
+            })
+        }
     }
-  }
+
+}
+  
+}
 
 angular
     .module('components.semesters')
