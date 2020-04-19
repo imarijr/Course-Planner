@@ -6,6 +6,12 @@
     margin-top: 10%
 }
 
+.md-dialog-container {
+    background-color: #000;
+    width: 500px;
+    height: 250px
+}
+
 .md-go-button {
     width: 10%;
     left: 50%;
