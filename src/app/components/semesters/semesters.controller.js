@@ -189,7 +189,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel) {
 
     function AddClassController($state, $mdDialog, $http, JSONService, CourseModel) {
         var ctrl = this;
-
+        console.log("running controller")
         ctrl.allClasses = []
         CourseModel.getCourses().then(function(courses) {
         console.log('courses: ', courses); 

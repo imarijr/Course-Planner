@@ -6,10 +6,10 @@
     margin-top: 10%
 }
 
-.md-dialog-container {
-    background-color: #000;
-    width: 500px;
-    height: 250px
+.md-block-addclass {
+    width: 1000px; 
+    height: 10px; 
+    overflow: scroll; 
 }
 
 .md-go-button {

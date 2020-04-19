@@ -1,10 +1,9 @@
 <!-- stateful component -->
-<md-input-container class="md-block" flex-gt-sm>
-    <h1 class="additional-options">Additional Class Options</h1> 
+  <md-input-container class="md-block-addclass" flex-gt-sm>
+      <h1 class="additional-options">Additional Class Options</h1> 
+    <!-- stateless component -->
+    <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course.attributes.courseName}}" class="secondary-button-padding-class">
+      <p>{{course.attributes.courseId}}</p>
+      <md-button class="md-secondary" ng-click="$ctrl.addCourseToSemester($event, course.attributes.courseName)" href="#!/semesters">add class</md-button>
+    </md-list-item>
   </md-input-container>
-  <!-- stateless component -->
-  <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course.attributes.courseName}}" class="secondary-button-padding-class">
-    <p>{{course.attributes.courseId}}</p>
-    <md-button class="md-secondary" ng-click="$ctrl.doSecondaryAction($event, course.attributes.courseName)">Description</md-button>
-    <md-button class="md-secondary" ng-click="$ctrl.addCourseToSemester($event, course.attributes.courseName)" href="#!/semesters">add class</md-button>
-  </md-list-item>
