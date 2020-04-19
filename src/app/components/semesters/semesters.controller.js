@@ -165,7 +165,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel) {
     }
     
     ctrl.addClass = function(event, semester) {
-
+        console.log('semester: ', semester)
         var config = {
             parent: angular.element(document.body),
             controller: AddClassController,
@@ -221,7 +221,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel) {
             CourseModel.getByName(course).then(function(course) {
             console.log('course found. id: ', course.id);
             console.log('sending id to setSemesterDefault')
-            CourseModel.setSemesterDefault(course.id, 3).then(function(success) {
+            CourseModel.setSemesterDefault(course.id, parseInt(semester)).then(function(success) {
                 console.log('set new default')
             }).catch(function () {
                 console.log('failed to set new default.'); 

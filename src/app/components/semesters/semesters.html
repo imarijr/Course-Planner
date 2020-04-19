@@ -9,7 +9,7 @@
             md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
             <!-- Each Tile holds a list of semester courses -->
             <!-- stateful component -->
-            <md-grid-tile ng-repeat="semester in $ctrl.models.semesters">
+            <md-grid-tile ng-repeat="(key, semester) in $ctrl.models.semesters">
                 <!-- ui-sortable allows drag drop sorting of 
                     arrays courseMap is the drag drop group -->
                     <!-- stateless component -->
@@ -24,7 +24,7 @@
                     </md-list-item>
                     <!-- display the running total of credits for each semester-->
                     <p>Credits: {{$ctrl.models.creditTotal[$index]}}</p>
-                    <md-button ng-click = "$ctrl.addClass($event, semester)">Add Class</md-button>
+                    <md-button ng-click = "$ctrl.addClass($event, key)">Add Class</md-button>
                 </md-list>
             </md-grid-tile>
         </md-grid-list>
