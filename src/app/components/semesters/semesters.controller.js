@@ -221,24 +221,27 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
             );
         };
 
-        ctrl.addClassToSemesterWrapper = function(event, course, $window) {
-            ctrl.addCourseToSemester(event, course); 
-            $mdDialog.cancel(); 
-            $window.location.reload();
+        ctrl.addCourseToSemesterWrapper = function(event, course, $window) {
+            addCourseToSemester(event, course).then(function(success){
+                $mdDialog.cancel(); 
+                $window.location.reload();
+            })
         }
 
-        ctrl.addCourseToSemester = function(event, course) {
+        //ctrl.addCourseToSemester = function(event, course) {
+        function addCourseToSemester(event, course) {
+            console.log("starting?")
             CourseModel.getByName(course).then(function(course) {
             console.log('course found. id: ', course.id);
             console.log('sending id to setSemesterDefault')
             CourseModel.setSemesterDefault(course.id, parseInt(semester)).then(function(success) {
                 console.log('set new default')
-            }).catch(function () {
-                console.log('failed to set new default.'); 
-            })
+                }).catch(function () {
+                    populateLists(CourseModel);
+                    console.log('failed to set new default.'); 
+                })
             }).catch(function() {
             })
-            //populateLists(CourseModel);
         }
     }
 
