@@ -96,11 +96,25 @@ class CourseModel {
             }).catch(error => Promise.reject(error))
     }
 
+    removeSemesterDefault(id) {
+        myobj = new this.Parse.Query(this.New())
+            .get(id)
+            .then(result => {
+                // this.Parse.defineAttributes(result, this.fields);
+                // this.data = result; 
+                result.set("semesterDefault", null); 
+                console.log('new default should be 3: ', result); 
+                result.save(); 
+                return Promise.resolve(result); 
+            }).catch(error => Promise.reject(error))
+    }
+
     getCourseBySem(semDef) {
         return new this.Parse.Query(this.New())
             .equalTo("semesterDefault", semDef)
             .find().then(result => {
                 this.data = result;
+                console.log("result of getCourseBySem: ", result);
                 return Promise.resolve(result);
             })
             .catch(error => Promise.reject(error));

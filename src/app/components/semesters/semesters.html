@@ -23,8 +23,10 @@
                         <md-divider></md-divider>
                     </md-list-item>
                     <!-- display the running total of credits for each semester-->
-                    <p>Credits: {{$ctrl.models.creditTotal[$index]}}</p>
-                    <md-button ng-click = "$ctrl.addClass($event, key)">Add Class</md-button>
+                    <div style="margin: 30px"></div>
+                    <p>Credits: {{$ctrl.models.creditTotal[$index]}}
+                    <md-button style="float: right; margin-top: -10px" ng-click = "$ctrl.deleteClass($event, key)">Delete Class</md-button>
+                    <md-button style="float: right; margin-top: -10px" ng-click = "$ctrl.addClass($event, key)">Add Class</md-button></p>
                 </md-list>
             </md-grid-tile>
         </md-grid-list>

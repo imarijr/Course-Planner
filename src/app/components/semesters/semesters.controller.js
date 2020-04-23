@@ -30,6 +30,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[0] += courses[idx].attributes.credits;
             }
         })
 
@@ -41,6 +42,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[1] += courses[idx].attributes.credits;
             }
         })
 
@@ -52,6 +54,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[2] += courses[idx].attributes.credits;
             }
         })
 
@@ -63,6 +66,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[3] += courses[idx].attributes.credits;
             }
         })
 
@@ -74,6 +78,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[4] += courses[idx].attributes.credits;
             }
         })
 
@@ -85,6 +90,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[5] += courses[idx].attributes.credits;
             }
         })
 
@@ -96,6 +102,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[6] += courses[idx].attributes.credits;
             }
         })
 
@@ -107,10 +114,13 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                 ctrl.models.prereqs[className] = courses[idx].attributes.prerequisites;     // ie ["MATH 10550"]
                 ctrl.models.names[className] = courses[idx].attributes.courseId;            // ie "MATH 10560"
                 ctrl.models.credits[className] = courses[idx].attributes.credits;           // ie 3
+                ctrl.models.creditTotal[7] += courses[idx].attributes.credits;
             }
         })
 
-        // current credit totals 
+    }
+
+    function calculateCreditTotalsPrereqs() {
         angular.forEach(ctrl.models.semesters, function (value, key) {
             for (let i=0; i<value.length; i++) {
                 ctrl.models.creditTotal[key-1] += ctrl.models.credits[ctrl.models.semesters[key][i]]
@@ -124,6 +134,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
         ctrl.courseMap = {
             stop: function (e, ui) {
                 //reset creditTotals
+                console.log("calculating credits")
                 ctrl.models.creditTotal = [0, 0, 0, 0, 0, 0, 0, 0]
                 ctrl.classWarning = false
                 //console.log("Updated Course Map", JSON.stringify(ctrl.models.semesters, undefined, 2))
@@ -167,6 +178,7 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
     }
 
     populateLists(CourseModel); 
+    calculateCreditTotalsPrereqs(); 
     
     ctrl.addClass = function(event, semester) {
         console.log('semester: ', semester)
@@ -244,10 +256,89 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
             })
         }
     }
+}
+
+
+    // delete class "controller"
+    ctrl.deleteClass = function(event, semester) {
+        console.log('semester: ', semester)
+        var config = {
+            parent: angular.element(document.body),
+            controller: DeleteClassController,
+            controllerAs: '$ctrl',
+            disableParentScroll: true, 
+            templateUrl: './deleteclass.html',
+            hasBackdrop: true, 
+            trapFocus: true, 
+            clickOutsideToClose: true, 
+            escapeToClose: true, 
+            focusOnOpen: true,
+            fullscreen: true, 
+            targetEvent: event
+        }
+
+        $mdDialog.show(config)
+            .then(answer => {
+                console.log('answer: ', answer); 
+            })
+
+
+    function DeleteClassController($state, $mdDialog, $http, JSONService, CourseModel, $window) {
+        var ctrl = this;
+        ctrl.allClasses = []
+        console.log("semester...? ", semester)
+        CourseModel.getCourseBySem(parseInt(semester)).then(function(courses) {
+        console.log('courses: ', courses); 
+        for (var i = 0; i < courses.length; i++) {
+            ctrl.allClasses.push(courses[i])
+            console.log(courses[i].attributes.courseName)
+        }
+        console.log('courses listed...', ctrl.allClasses)
+        }).catch(function() {
+        console.log("couldn't fetch courses")
+        })
+
+        console.log('courses listed...', ctrl.allClasses)
+
+        // go through each of the classes to get the description of the class
+        ctrl.doSecondaryAction = function(event, description) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .title("Course Description")
+                .textContent(description)
+                .ok('Ok')
+                .targetEvent(event)
+            );
+        };
+
+        ctrl.addCourseToSemesterWrapper = function(event, course, $window) {
+            addCourseToSemester(event, course).then(function(success){
+                $mdDialog.cancel(); 
+                $window.location.reload();
+            })
+        }
+
+        //ctrl.addCourseToSemester = function(event, course) {
+        ctrl.removeCourseFromSemester = function(event, course) {
+            console.log("starting?")
+            CourseModel.getByName(course).then(function(course) {
+            console.log('course found. id: ', course.id);
+            console.log('sending id to setSemesterDefault')
+            CourseModel.removeSemesterDefault(course.id).then(function(success) {
+                console.log('set new default')
+                }).catch(function () {
+                    populateLists(CourseModel);
+                    console.log('failed to set new default.'); 
+                })
+            }).catch(function() {
+            })
+        }
+    }    
+
 
 }
-  
 }
+
 
 angular
     .module('components.semesters')
