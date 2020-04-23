@@ -148,6 +148,13 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
                         // calculate new credit totals
                         ctrl.models.creditTotal[i - 1] += ctrl.models.credits[ctrl.models.semesters[i][j]]
 
+                        // make sure that moves get saved to parse - save each class+semester
+                        CourseModel.getByName(ctrl.models.semesters[i][j]).then(function(course) {
+                            console.log("course back from get by name: ", course)
+                            CourseModel.setSemesterDefault(course.id, i).then(function(success) {
+                            console.log("success!")
+                            });
+                        })
                         var prereqs = ctrl.models.prereqs[ctrl.models.semesters[i][j]]
                         if (prereqs != null) {
                             var plength = prereqs.length
