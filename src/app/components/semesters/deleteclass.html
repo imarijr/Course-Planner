@@ -1,9 +1,0 @@
-<!-- stateful component -->
-<md-input-container class="md-block-addclass" flex-gt-sm>
-    <h1 class="additional-options">Remove Class</h1> 
-  <!-- stateless component -->
-  <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course.attributes.courseName}}" class="secondary-button-padding-class">
-    <p>{{course.attributes.courseName}}</p>
-    <md-button class="md-secondary" ng-click="$ctrl.removeCourseFromSemester($event, course.attributes.courseName)" href="#!/semesters">remove class</md-button>
-  </md-list-item>
-</md-input-container>

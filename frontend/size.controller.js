@@ -1,5 +1,6 @@
 // will also go in the routes folder 
 // here it depends on what you're doing
+/*
 const thirdPartyLibrary = require('thirdPartyLibrary'); 
 
 // credentials (API keys, oauth, etc)
@@ -32,4 +33,4 @@ function readImage(req, res) {
     }); 
 }
 
-module.exports = size; 
+module.exports = size; */

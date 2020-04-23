@@ -1,5 +1,5 @@
 // will be in the "routes" folder
-
+/*
 const express = require('express'); 
 const bodyParser = require('body-parser'); 
 const router = express.Router(); 
@@ -23,5 +23,5 @@ router.use((req, res, next) => {
 router.get('/size', SizeController.read);   // reads size of image in px, inches, etc. width x height
 router.post('/color/grayscale', jsonParser, ColorController.grayscale);    // takes image url and runs grayscale function 
 
-module.exports = router;    // putting all the routes on the router object 
+module.exports = router;    // putting all the routes on the router object */
 
