@@ -240,34 +240,56 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
             );
         };
 
-        ctrl.addCourseToSemesterWrapper = function(event, course, $window) {
-            addCourseToSemester(event, course).then(function(success){
-                $mdDialog.cancel(); 
-                $window.location.reload();
-            })
-        }
+        // ctrl.addCourseToSemesterWrapper = function(event, course, $window) {
+        //     addCourseToSemester(event, course).then(function(success){
+        //         $mdDialog.cancel(); 
+        //         $window.location.reload();
+        //     })
+        // }
 
         //ctrl.addCourseToSemester = function(event, course) {
-        function addCourseToSemester(event, course) {
-            console.log("starting?")
+        // function addCourseToSemester(event, course) {
+        //     console.log("starting?")
+        //     CourseModel.getByName(course).then(function(course) {
+        //     console.log('course found. id: ', course.id);
+        //     console.log('sending id to setSemesterDefault')
+        //     CourseModel.setSemesterDefault(course.id, parseInt(semester)).then(function(success) {
+        //         console.log('set new default')
+        //         }).catch(function () {
+        //             populateLists(CourseModel);
+        //             console.log('failed to set new default.'); 
+        //         })
+        //     }).catch(function() {
+        //     })
+        // }
+        ctrl.addCourseToSemester = function(event, course) {
             CourseModel.getByName(course).then(function(course) {
-            console.log('course found. id: ', course.id);
-            console.log('sending id to setSemesterDefault')
-            CourseModel.setSemesterDefault(course.id, parseInt(semester)).then(function(success) {
-                console.log('set new default')
+                console.log('sending id to setSemesterDefault')
+                CourseModel.setSemesterDefault(course.id, parseInt(semester)).then(function(success) {
+                    console.log('set new default')
                 }).catch(function () {
                     populateLists(CourseModel);
                     console.log('failed to set new default.'); 
                 })
+                
+                $mdDialog.cancel().then(function() {
+                    console.log("successfully closed.")
+                    $state.reload();
+                }).catch(function () {
+                    console.log("failed to close.");
+                })
+
             }).catch(function() {
+                console.log()
+                console.log('failed to get class')
             })
         }
     }
 }
 
 
-    // delete class "controller"
-    ctrl.deleteClass = function(event, semester) {
+     // delete class "controller"
+     ctrl.deleteClass = function(event, semester) {
         console.log('semester: ', semester)
         var config = {
             parent: angular.element(document.body),
@@ -290,60 +312,58 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
             })
 
 
-    function DeleteClassController($state, $mdDialog, $http, JSONService, CourseModel, $window) {
-        var ctrl = this;
-        ctrl.allClasses = []
-        console.log("semester...? ", semester)
-        CourseModel.getCourseBySem(parseInt(semester)).then(function(courses) {
-        console.log('courses: ', courses); 
-        for (var i = 0; i < courses.length; i++) {
-            ctrl.allClasses.push(courses[i])
-            console.log(courses[i].attributes.courseName)
-        }
-        console.log('courses listed...', ctrl.allClasses)
-        }).catch(function() {
-        console.log("couldn't fetch courses")
-        })
-
-        console.log('courses listed...', ctrl.allClasses)
-
-        // go through each of the classes to get the description of the class
-        ctrl.doSecondaryAction = function(event, description) {
-            $mdDialog.show(
-                $mdDialog.alert()
-                .title("Course Description")
-                .textContent(description)
-                .ok('Ok')
-                .targetEvent(event)
-            );
-        };
-
-        ctrl.addCourseToSemesterWrapper = function(event, course, $window) {
-            addCourseToSemester(event, course).then(function(success){
-                $mdDialog.cancel(); 
-                $window.location.reload();
-            })
-        }
-
-        //ctrl.addCourseToSemester = function(event, course) {
-        ctrl.removeCourseFromSemester = function(event, course) {
-            console.log("starting?")
-            CourseModel.getByName(course).then(function(course) {
-            console.log('course found. id: ', course.id);
-            console.log('sending id to setSemesterDefault')
-            CourseModel.removeSemesterDefault(course.id).then(function(success) {
-                console.log('set new default')
-                }).catch(function () {
-                    populateLists(CourseModel);
-                    console.log('failed to set new default.'); 
-                })
+        function DeleteClassController($state, $mdDialog, $http, JSONService, CourseModel, $window) {
+            var ctrl = this;
+            ctrl.allClasses = []
+            console.log("semester...? ", semester)
+            CourseModel.getCourseBySem(parseInt(semester)).then(function(courses) {
+            console.log('courses: ', courses); 
+            for (var i = 0; i < courses.length; i++) {
+                ctrl.allClasses.push(courses[i])
+                console.log(courses[i].attributes.courseName)
+            }
+            console.log('courses listed...', ctrl.allClasses)
             }).catch(function() {
+            console.log("couldn't fetch courses")
             })
-        }
-    }    
-
-
-}
+    
+            console.log('courses listed...', ctrl.allClasses)
+        
+            // go through each of the classes to get the description of the class
+            ctrl.doSecondaryAction = function(event, description) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                    .title("Course Description")
+                    .textContent(description)
+                    .ok('Ok')
+                    .targetEvent(event)
+                );
+            };
+        
+            ctrl.removeCourseFromSemester = function(event, course) {
+                CourseModel.getByName(course).then(function(course) {
+                    console.log('sending id to setSemesterDefault')
+                    CourseModel.removeSemesterDefault(course.id).then(function(success) {
+                        console.log('set new default')
+                    }).catch(function () {
+                        populateLists(CourseModel);
+                        console.log('failed to set new default.'); 
+                    })
+        
+                    $mdDialog.cancel().then(function() {
+                        console.log("closed popup");
+                        $state.reload();
+                    }).catch(function () {
+                        console.log("failed to close");
+                    })
+        
+                }).catch(function() {
+                    console.log()
+                    console.log('failed to get class')
+                })
+            }
+        }    
+    }
 }
 
 

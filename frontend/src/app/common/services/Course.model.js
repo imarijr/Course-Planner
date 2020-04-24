@@ -84,7 +84,8 @@ class CourseModel {
     }
 
     setSemesterDefault(id, sem) {
-        myobj = new this.Parse.Query(this.New())
+        //myobj = new this.Parse.Query(this.New())
+        return new this.Parse.Query(this.New())
             .get(id)
             .then(result => {
                 // this.Parse.defineAttributes(result, this.fields);
@@ -97,7 +98,8 @@ class CourseModel {
     }
 
     removeSemesterDefault(id) {
-        myobj = new this.Parse.Query(this.New())
+        //myobj = new this.Parse.Query(this.New())
+        return new this.Parse.Query(this.New())
             .get(id)
             .then(result => {
                 // this.Parse.defineAttributes(result, this.fields);
