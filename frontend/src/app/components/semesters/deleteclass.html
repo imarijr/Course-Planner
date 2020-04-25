@@ -4,6 +4,6 @@
   <!-- stateless component -->
   <md-list-item ng-repeat="course in $ctrl.allClasses" value="{{course.attributes.courseName}}" class="secondary-button-padding-class">
     <p>{{course.attributes.courseName}}</p>
-    <md-button class="md-secondary" ng-click="$ctrl.removeCourseFromSemester($event, course.attributes.courseName)" href="#!/semesters">remove class</md-button>
+    <md-button class="md-secondary" ng-click="$ctrl.removeCourseFromSemester($event, course.attributes.courseName)" href="#/semesters">remove class</md-button>
   </md-list-item>
 </md-input-container>
