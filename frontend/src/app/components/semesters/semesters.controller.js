@@ -1,6 +1,31 @@
+/**
+ * @ngdoc directive 
+ * 
+ * @function SemestersController
+ * 
+ * @param {*} $http 
+ * @param {*} $mdDialog 
+ * @param {*} JSONService 
+ * @param {*} CourseModel 
+ * @param {*} $window 
+ * 
+ * @description
+ * The semesters controller is used for the semesters page. 
+ */
+
 function SemestersController($http, $mdDialog, JSONService, CourseModel, $window) {
     var ctrl = this;
     console.log("semesters controller")
+
+    /**
+     * @ngdoc directive
+     * @function populateLists 
+     * @param {*} CourseModel
+     * 
+     * @description
+     * This function is used to generate all 8 semesters on the semesters page. For each semester, if a class' 
+     * default semester is set to that specific semester the class gets added to that semester.
+     */
 
     function populateLists(CourseModel) {
         ctrl.models = {
@@ -120,6 +145,15 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
 
     }
 
+    /**
+     * @ngdoc directive
+     * 
+     * @function calculateCreditTotalsPrereqs
+     * 
+     * @description
+     * This function is used to check if there are too many classes in a semester (goes over credit maximum) and all prereqs are satisfied.
+     */
+
     function calculateCreditTotalsPrereqs() {
         angular.forEach(ctrl.models.semesters, function (value, key) {
             for (let i=0; i<value.length; i++) {
@@ -210,6 +244,24 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
             })
 
 
+    /**
+     * @ngdoc directive
+     * 
+     * @function AddClassController
+     * 
+     * @param {*} $state 
+     * @param {*} $mdDialog 
+     * @param {*} $http 
+     * @param {*} JSONService 
+     * @param {*} CourseModel 
+     * @param {*} $window 
+     * 
+     * @description
+     * This function acts as the add class controller (which is no loner its own page, but a popup). When the add class button is clicked,
+     * all the classes that do not have a default semester populate the dialogue window. When a class gets added, once the data is returned from 
+     * the db, the popup closes and the page refreshes to reflect the updated semester view.
+     */
+
     function AddClassController($state, $mdDialog, $http, JSONService, CourseModel, $window) {
         var ctrl = this;
         console.log("running controller")
@@ -240,28 +292,6 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
             );
         };
 
-        // ctrl.addCourseToSemesterWrapper = function(event, course, $window) {
-        //     addCourseToSemester(event, course).then(function(success){
-        //         $mdDialog.cancel(); 
-        //         $window.location.reload();
-        //     })
-        // }
-
-        //ctrl.addCourseToSemester = function(event, course) {
-        // function addCourseToSemester(event, course) {
-        //     console.log("starting?")
-        //     CourseModel.getByName(course).then(function(course) {
-        //     console.log('course found. id: ', course.id);
-        //     console.log('sending id to setSemesterDefault')
-        //     CourseModel.setSemesterDefault(course.id, parseInt(semester)).then(function(success) {
-        //         console.log('set new default')
-        //         }).catch(function () {
-        //             populateLists(CourseModel);
-        //             console.log('failed to set new default.'); 
-        //         })
-        //     }).catch(function() {
-        //     })
-        // }
         ctrl.addCourseToSemester = function(event, course) {
             CourseModel.getByName(course).then(function(course) {
                 console.log('sending id to setSemesterDefault')
@@ -287,7 +317,6 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
     }
 }
 
-
      // delete class "controller"
      ctrl.deleteClass = function(event, semester) {
         console.log('semester: ', semester)
@@ -312,6 +341,24 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
             })
 
 
+        /**
+         * @ngdoc directive
+         * 
+         * @function DeleteClassController
+         * 
+         * @param {*} $state 
+         * @param {*} $mdDialog 
+         * @param {*} $http 
+         * @param {*} JSONService 
+         * @param {*} CourseModel 
+         * @param {*} $window 
+         * 
+         * @description
+         * This function acts as the delete class controller, which now generates each class in a semester on a popup. If the delete button is 
+         * clicked, the semester default value is set to null in the database. Once the process from the db is returned the popup closes and 
+         * the page refreshes with the updated semester list.
+         */
+        
         function DeleteClassController($state, $mdDialog, $http, JSONService, CourseModel, $window) {
             var ctrl = this;
             ctrl.allClasses = []
@@ -365,7 +412,6 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
         }    
     }
 }
-
 
 angular
     .module('components.semesters')

@@ -1,4 +1,3 @@
-/* defines the home component, the first page the user sees */
 var home = {
     templateUrl: './home.html',
     controller: 'HomeController',
