@@ -7,9 +7,13 @@
 }
 
 .md-block-addclass {
-    width: 1000px; 
-    height: 10px; 
-    overflow: scroll; 
+    height: 20%; 
+    overflow-y: scroll; 
+}
+
+md-dialog{
+    min-width: 50% !important;
+    min-height: 50% !important;
 }
 
 .md-go-button {
@@ -17,6 +21,11 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+}
+
+.addClass-items {
+    margin-left: 10% !important;
+    margin-right: 10% !important;
 }
 
 .additional-options {
