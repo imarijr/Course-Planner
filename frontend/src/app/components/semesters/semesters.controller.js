@@ -266,18 +266,25 @@ function SemestersController($http, $mdDialog, JSONService, CourseModel, $window
         var ctrl = this;
         console.log("running controller")
         ctrl.allClasses = []
+        let classesFound = []
         CourseModel.getCourses().then(function(courses) {
         console.log('courses: ', courses); 
         for (var i = 0; i < courses.length; i++) {
             if (courses[i].attributes.semesterDefault == null) {
-            ctrl.allClasses.push(courses[i])
+            classesFound.push(courses[i])
             console.log(courses[i].attributes.courseName)
             }
         }
+
+        // sort array alphabetically 
+        ctrl.allClasses = classesFound.sort();
+        ctrl.allClasses.sort((a, b) => (a.attributes.courseId > b.attributes.courseId) ? 1 : -1)
+        console.log("here??????")
         console.log('courses listed...', ctrl.allClasses)
         }).catch(function() {
         console.log("couldn't fetch courses")
         })
+
 
         console.log('courses listed...', ctrl.allClasses)
 
