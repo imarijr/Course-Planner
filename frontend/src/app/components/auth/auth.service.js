@@ -1,0 +1,1 @@
+// look at how todd motto does this for firebase but swap out the commands for parse 
