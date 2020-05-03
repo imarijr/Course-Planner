@@ -8,9 +8,20 @@ function authController($state, AuthService) {
         };
     };
     ctrl.loginUser = (event) => {
-        console.log('event: ', event);
+        // console.log('event: ', event);
+        let user = event.user; 
+        AuthService.login(user).then(function(value) {
+            console.log("successful login: ", value); 
+            $state.go('home'); 
+        })
+        .catch(error => {
+            console.log("username or password incorrect."); 
+        })
+
     } 
 }
+
+
 
 const authLogin = {
     templateUrl: './auth-login.html',
