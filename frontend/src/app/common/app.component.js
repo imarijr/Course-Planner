@@ -9,7 +9,7 @@ var app = {
     .config(function ($stateProvider) {
       $stateProvider
         .state('app', {
-              redirectTo:  "home",
+              redirectTo:  "auth/login",
               url: '/',
               component: 'app',
 

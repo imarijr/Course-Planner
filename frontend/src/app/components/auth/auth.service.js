@@ -38,7 +38,9 @@ function AuthService(Parse) {
     this.login = function (user) {
         return Parse.User
             .logIn(user.email, user.password, {
-                success: function (auth) {},
+                success: function (auth) {
+                    console.log("logged in: ", user.email);
+                },
                 error: function (auth, error) {
                     console.log(error);
                 }
@@ -54,14 +56,18 @@ function AuthService(Parse) {
      */
 
     this.register = function (user) {
-        //console.log("User: ", user);
-        auth.set("username", user.email);
-        auth.set("password", user.password);
+        console.log("User: ", user);
         auth.set("email", user.email);
-        auth.set("university", user.university);
+        auth.set("password", user.password);
+        auth.set("firstName", user.firstName);
+        auth.set("lastName", user.lastName);
+        auth.set("username", user.email); 
+        console.log("auth: ", auth);
         return auth
             .signUp(null, {
-                success: function (auth) {},
+                success: function (auth) {
+                    console.log('Registered!')
+                },
                 error: function (auth, error) {
                     alert("Error: " + error.code + " " + error.message);
                 }
