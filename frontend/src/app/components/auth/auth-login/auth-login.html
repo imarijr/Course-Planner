@@ -1,2 +1,13 @@
-<auth-form user="$ctrl.user" message="{{ $ctrl.error }}" button="Login" on-submit="$ctrl.loginUser($event);"></auth-form>
-<a ui-sref="auth.login" class="auth__trans caption">Already have an account? Login here.</a>
+<div class="auth mdc-theme--background" layout="column" layout-align="center">
+    <div>
+        <auth-form user="$ctrl.user" button="Login" on-submit="$ctrl.loginUser($event);">
+        </auth-form>
+    </div>
+    <center>
+        <div>
+            <a ui-sref="auth.register" class="auth__trans mdc-theme--primary">
+                Don't have an account? Create one here.
+            </a>
+        </div>
+    </center>
+</div>

@@ -18,7 +18,7 @@ const authRegister = {
 
 angular
     .module('components.auth')
-    .component('auth-register', authRegister)
+    .component('authRegister', authRegister)
     .config(($stateProvider) => {
         $stateProvider.state('auth.register', {
             url: '/register',

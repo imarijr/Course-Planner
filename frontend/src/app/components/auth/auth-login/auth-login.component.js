@@ -2,6 +2,7 @@ const authLogin = {
     templateUrl: './auth-login.html',
     controller: ($state, AuthService) => {
         const ctrl = this;
+        console.log("running authLogin controller...")
         ctrl.$onInit = () => {
             ctrl.user = {
                 email: '',
@@ -16,7 +17,7 @@ const authLogin = {
 
 angular
     .module('components.auth')
-    .component('auth-login', authLogin)
+    .component('authLogin', authLogin)
     .config(($stateProvider, $urlRouterProvider) => {
             $stateProvider
             .state('auth', {
@@ -28,5 +29,5 @@ angular
                 url: '/login',
                 component: 'authLogin'
             });
-            $urlRouterProvider.otherwise('/auth/login')
+            $urlRouterProvider.otherwise('/auth/logindefault')
         });

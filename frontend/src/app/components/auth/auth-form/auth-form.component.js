@@ -19,5 +19,5 @@ const authForm = {
 }
 
 angular
-    .module('.components.auth')
+    .module('components.auth')
     .component('authForm', authForm)
