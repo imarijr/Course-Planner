@@ -1,28 +1,31 @@
-        <form name="authForm" novalidate ng-submit="$ctrl.submitForm();">
-            <div class="input-container" ng-if="$ctrl.button === 'Sign Up & Create Account'">
-                <input type="text" autofocus required type="text" class="auth_input" name="firstName"
-                    ng-model="$ctrl.user.firstName" />
-                <label> First Name </label>
-            </div>
-            <div ng-if="$ctrl.button === 'Sign Up & Create Account'" class="input-container">
-                <input required type="text" class="auth_input" name="lastName" ng-model="$ctrl.user.lastName" />
-                <label> Last Name </label>
-            </div>
+        <div class="auth_form">
+            <form name="authForm" novalidate ng-submit="$ctrl.submitForm();">
+                <div class="input-container" ng-if="$ctrl.button === 'Sign Up & Create Account'">
+                    <input type="text" autofocus required type="text" class="auth_input" name="firstName"
+                        ng-model="$ctrl.user.firstName" />
+                    <label> First Name </label>
+                </div>
+                <div ng-if="$ctrl.button === 'Sign Up & Create Account'" class="input-container">
+                    <input required type="text" class="auth_input" name="lastName" ng-model="$ctrl.user.lastName" />
+                    <label> Last Name </label>
+                </div>
 
-            <div class="input-container" label="Email" outlined="true" dense="isDense"
-                ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
-                <input autofocus type="email" class="auth_input" ng-model="$ctrl.user.email" required />
-                <label> Email </label>
-            </div>
+                <div class="input-container" label="Email" outlined="true" dense="isDense"
+                    ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+                    <input autofocus type="email" class="auth_input" ng-model="$ctrl.user.email" required />
+                    <label> Email </label>
+                </div>
 
-            <div class="input-container" label="Password" outlined="true" dense="isDense"
-                ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
-                <input required type="password" class="auth_input" ng-model="$ctrl.user.password" />
-                <label> Password </label>
-            </div>
-            <button type="submit" ng-disabled="authForm.$invalid" class="btn"
-                ng-class="{'mdc-theme--secondary-bg': !authForm.$invalid}">
-                <h1 class="auth__buttonText button">{{ $ctrl.button }}</h1>
-            </button>
+                <div class="input-container" label="Password" outlined="true" dense="isDense"
+                    ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+                    <input required type="password" class="auth_input" ng-model="$ctrl.user.password" />
+                    <label> Password </label>
+                </div>
+                <button type="submit" ng-disabled="authForm.$invalid" class="btn"
+                    ng-class="{'mdc-theme--secondary-bg': !authForm.$invalid}">
+                    <h1 class="auth__buttonText button">{{ $ctrl.button }}</h1>
+                </button>
 
-        </form>
+            </form>
+
+        </div>
