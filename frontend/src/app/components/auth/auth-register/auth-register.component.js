@@ -1,6 +1,6 @@
 const authRegister = {
     templateUrl: './auth-register.html',
-    controller: ($state, AuthService) => {
+    controller: function($state, AuthService) {
         const ctrl = this;
         ctrl.$onInit = () => {
             ctrl.error = null;

@@ -1,18 +1,20 @@
+function authController($state, AuthService) {
+    const ctrl = this;
+    console.log("running authLogin controller...")
+    ctrl.$onInit = () => {
+        ctrl.user = {
+            email: '',
+            password: ''
+        };
+    };
+    ctrl.loginUser = (event) => {
+        console.log('event: ', event);
+    } 
+}
+
 const authLogin = {
     templateUrl: './auth-login.html',
-    controller: ($state, AuthService) => {
-        const ctrl = this;
-        console.log("running authLogin controller...")
-        ctrl.$onInit = () => {
-            ctrl.user = {
-                email: '',
-                password: ''
-            };
-        };
-        ctrl.loginUser = (event) => {
-            console.log('event: ', event);
-        }
-    }
+    controller: authController
 };
 
 angular
@@ -29,5 +31,5 @@ angular
                 url: '/login',
                 component: 'authLogin'
             });
-            $urlRouterProvider.otherwise('/auth/logindefault')
+            $urlRouterProvider.otherwise('/auth/login')
         });
