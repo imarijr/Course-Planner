@@ -3,6 +3,9 @@
         <auth-form user="$ctrl.user" button="Login" on-submit="$ctrl.loginUser($event);">
         </auth-form>
     </div>
+    <div ng-show="$ctrl.validCredentials" class="warning-text">
+        Invalid login credentials.
+    </div>
     <center>
         <div>
             <a ui-sref="auth.register" class="auth__trans mdc-theme--primary">

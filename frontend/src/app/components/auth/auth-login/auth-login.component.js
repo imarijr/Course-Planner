@@ -1,13 +1,14 @@
 function authController($state, AuthService) {
-    const ctrl = this;
+    const $ctrl = this;
     console.log("running authLogin controller...")
-    ctrl.$onInit = () => {
-        ctrl.user = {
+    $ctrl.$onInit = () => {
+        $ctrl.user = {
             email: '',
             password: ''
         };
     };
-    ctrl.loginUser = (event) => {
+    $ctrl.validCredentials = false;
+    $ctrl.loginUser = (event) => {
         // console.log('event: ', event);
         let user = event.user; 
         AuthService.login(user).then(function(value) {
@@ -15,6 +16,7 @@ function authController($state, AuthService) {
             $state.go('home'); 
         })
         .catch(error => {
+            $ctrl.validCredentials = true;
             console.log("username or password incorrect."); 
         })
 
