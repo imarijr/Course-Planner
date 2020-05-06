@@ -1,6 +1,10 @@
 var appNav = {
-    templateUrl: './app-nav.html'
-  };
+  bindings: {
+    user: '<', 
+    onLogout: '&'
+  },
+  templateUrl: './app-nav.html'
+};
   
   angular
     .module('common')

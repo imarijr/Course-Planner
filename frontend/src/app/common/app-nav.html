@@ -2,10 +2,13 @@
   <md-toolbar>
       <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
           <div>
-              <a href="#"><i class="material-icons">home</i></a>
+              <a href="#">Course Planner</a>
           </div>
-          <div>
-              <h3>Course Planner</h3>
+          <div class="header_logout">
+            Welcome, {{ ::$ctrl.user.email }}!  
+            <a class="logout_spacing" href="" ng-click="$ctrl.onLogout();">
+                Logout?
+            </a>
           </div>
       </div>
   </md-toolbar>

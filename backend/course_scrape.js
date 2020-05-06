@@ -8,9 +8,9 @@ const nightmare = Nightmare({
 
 Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
 Parse.initialize(
-    'UZwpFbGYPWGGKsVAt5vRzPbH1lSdX6u77OF3KrD5', // This is your Application ID
-    'IpK6jyzdSSOGfqfM5SbA90UmakjLChfbEjcaPFBS', // This is your Javascript key
-    'BKF9XH33Ijf8pAA3VDOzrRSjLPEIXKw0tqScKNz9' // This is your Master key (never use it in the frontend)
+    '0dbje6gd8OgSaOXLyjDB862HBHyCR6y16iFA3tU3', // This is your Application ID
+    'ry5B2cpFIEwnMu4BQSmhvPPikMQjJQ83Pdhno5RC', // This is your Javascript key
+    'bsNmSy5bfq6lowVHnqPUSPr5a0pHRuP2ADHuR1f9' // This is your Master key (never use it in the frontend)
 );
 
 // refresh database every two weeks (2x a month @ midnight)
